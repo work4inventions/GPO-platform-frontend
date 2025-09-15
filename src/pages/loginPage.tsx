@@ -5,7 +5,7 @@ import { Input } from '@/components/base/input/input'
 import { Button } from '@/components/base/buttons/button'
 import { Checkbox } from '@/components/base/checkbox/checkbox'
 import { RatingStars } from '@/components/foundations/rating-stars'
-import { ChevronLeft, ChevronRight } from '@untitledui/icons'
+// Removed unused imports
 
 // Testimonial data
 const testimonials = [
@@ -41,7 +41,7 @@ const testimonials = [
 
 // Animation variants for smooth slide transitions
 const slideVariants = {
-    enter: (direction) => ({
+    enter: (direction: number) => ({
         x: direction > 0 ? 300 : -300,
         opacity: 0,
         scale: 0.9,
@@ -51,7 +51,7 @@ const slideVariants = {
         opacity: 1,
         scale: 1,
     },
-    exit: (direction) => ({
+    exit: (direction: number) => ({
         x: direction < 0 ? 300 : -300,
         opacity: 0,
         scale: 0.9,
@@ -59,7 +59,7 @@ const slideVariants = {
 }
 
 const slideTransition = {
-    x: { type: "spring", stiffness: 300, damping: 30 },
+    x: { type: "spring" as const, stiffness: 300, damping: 30 },
     opacity: { duration: 0.2 },
     scale: { duration: 0.3 },
 }
@@ -74,7 +74,7 @@ const contentVariants = {
         y: 0,
         transition: {
             duration: 0.6,
-            ease: "easeOut",
+            ease: "easeOut" as const,
             staggerChildren: 0.1,
             delayChildren: 0.2,
         }
@@ -91,7 +91,7 @@ const itemVariants = {
         y: 0,
         transition: {
             duration: 0.4,
-            ease: "easeOut"
+            ease: "easeOut" as const
         }
     },
 }
@@ -106,14 +106,14 @@ const buttonVariants = {
         backgroundColor: 'rgba(255, 255, 255, 0.2)',
         transition: {
             duration: 0.2,
-            ease: "easeOut"
+            ease: "easeOut" as const
         },
     },
     tap: {
         scale: 0.95,
         transition: {
             duration: 0.1,
-            ease: "easeIn"
+            ease: "easeIn" as const
         },
     },
 }
@@ -125,7 +125,7 @@ function LoginPage() {
     const [currentTestimonial, setCurrentTestimonial] = useState(0)
     const [direction, setDirection] = useState(0)
 
-    const handleSubmit = (e) => {
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         // Handle login logic here
         console.log('Login attempt:', { email, password, rememberMe })
@@ -182,7 +182,7 @@ function LoginPage() {
                                     <Input
                                         type="email"
                                         placeholder="Enter your email"
-                                        onChange={(e) => setEmail(e.target.value)}
+                                        onChange={setEmail}
                                         isRequired
                                         size="md"
                                     />
@@ -194,7 +194,7 @@ function LoginPage() {
                                     <Input
                                         type="password"
                                         placeholder="Enter your password"
-                                        onChange={(e) => setPassword(e.target.value)}
+                                        onChange={setPassword}
                                         isRequired
                                         size="md"
                                     />
