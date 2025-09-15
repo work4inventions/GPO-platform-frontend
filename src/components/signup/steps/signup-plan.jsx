@@ -54,10 +54,10 @@ export const SignupPlan = ({ data, onDataUpdate, onNext, onPrevious }) => {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 w-[730px] max-xl:px-5 max-md:w-full">
       {/* Header */}
-      <div className="text-center">
-        <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">Subscription Plan</h1>
+      <div className="mb-8 max-lg:text-center max-lg:mt-[25px]">
+        <h1 className="text-2xl sm:text-3xl font-semibold text-gray-900 mb-3 leading-[1.266666666666667] ">Subscription Plan</h1>
         <p className="text-sm sm:text-base text-gray-600">
           Select the best plan for your needs
         </p>
@@ -65,14 +65,14 @@ export const SignupPlan = ({ data, onDataUpdate, onNext, onPrevious }) => {
 
       {/* Annual Toggle */}
       <div className="flex items-center justify-center space-x-3">
-        <span className={`text-sm ${!data.isAnnual ? 'text-gray-900' : 'text-gray-500'}`}>
-          Monthly
-        </span>
+       
+        <div className="h-6">
         <Toggle
           isSelected={data.isAnnual}
           onChange={(isSelected) => onDataUpdate({ isAnnual: isSelected })}
         />
-        <span className={`text-sm ${data.isAnnual ? 'text-gray-900' : 'text-gray-500'}`}>
+        </div>
+        <span className={`text-base font-medium text-[#2980B9] `}>
           Annual pricing
         </span>
         {data.isAnnual && (
@@ -81,7 +81,7 @@ export const SignupPlan = ({ data, onDataUpdate, onNext, onPrevious }) => {
       </div>
 
       {/* Plans */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-6 ">
         {plans.map((plan) => {
           const isSelected = selectedPlan === plan.id;
           const priceText = getPriceText(plan);
@@ -89,7 +89,7 @@ export const SignupPlan = ({ data, onDataUpdate, onNext, onPrevious }) => {
           return (
             <div
               key={plan.id}
-              className={`relative p-6 border-2 rounded-lg cursor-pointer transition-all duration-200 ${
+              className={`relative otline-offset-1 outline-1 outline-gray-200 shadow-lg rounded-2xl cursor-pointer transition-all duration-200 p-8 ${
                 isSelected
                   ? 'border-[#2980B9] bg-blue-50'
                   : 'border-gray-200 hover:border-gray-300'
@@ -104,21 +104,22 @@ export const SignupPlan = ({ data, onDataUpdate, onNext, onPrevious }) => {
               )}
 
               {/* Price */}
-              <div className="text-center mb-4">
-                <div className="text-3xl font-bold text-gray-900 mb-1">
-                  {priceText}
+              <div className="text-center mb-8">
+                <div className="text-5xl max-sm:text-4xl font-bold text-gray-900 mb-4 leading-[1.25]">
+                  {priceText} 
                 </div>
-                <div className="text-lg font-medium text-gray-700">
+                <div className="text-[20px] font-semibold text-gray-700">
                   {plan.name}
                 </div>
               </div>
 
-              {/* Features */}
-              <div className="space-y-3 mb-6">
+             <div>
+               {/* Features */}
+               <div className="space-y-3 ">
                 {plan.features.map((feature, index) => (
-                  <div key={index} className="flex items-start space-x-3">
+                  <div key={index} className="flex items-start gap-3 mb-4">
                     <Check className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                    <span className="text-sm text-gray-600">{feature}</span>
+                    <span className="text-base text-gray-600">{feature}</span>
                   </div>
                 ))}
               </div>
@@ -126,13 +127,14 @@ export const SignupPlan = ({ data, onDataUpdate, onNext, onPrevious }) => {
               {/* Button */}
               <Button
                 size="lg"
-                className="w-full"
+                className="w-full py-3 bg-[#2980B9] text-white mt-6"
                 color={isSelected ? "primary" : "secondary"}
                 onClick={() => handlePlanSelect(plan.id)}
                 style={isSelected ? { backgroundColor: '#2980B9' } : undefined}
               >
                 Subscribe to {plan.name}
               </Button>
+             </div>
             </div>
           );
         })}
