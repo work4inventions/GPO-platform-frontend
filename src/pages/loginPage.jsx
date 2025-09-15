@@ -65,11 +65,11 @@ const slideTransition = {
 }
 
 const contentVariants = {
-    hidden: { 
+    hidden: {
         opacity: 0,
         y: 20,
     },
-    visible: { 
+    visible: {
         opacity: 1,
         y: 0,
         transition: {
@@ -82,12 +82,12 @@ const contentVariants = {
 }
 
 const itemVariants = {
-    hidden: { 
-        opacity: 0, 
+    hidden: {
+        opacity: 0,
         y: 15,
     },
-    visible: { 
-        opacity: 1, 
+    visible: {
+        opacity: 1,
         y: 0,
         transition: {
             duration: 0.4,
@@ -104,14 +104,14 @@ const buttonVariants = {
     hover: {
         scale: 1.05,
         backgroundColor: 'rgba(255, 255, 255, 0.2)',
-        transition: { 
+        transition: {
             duration: 0.2,
             ease: "easeOut"
         },
     },
     tap: {
         scale: 0.95,
-        transition: { 
+        transition: {
             duration: 0.1,
             ease: "easeIn"
         },
@@ -178,7 +178,7 @@ function LoginPage() {
                             <form className="" onSubmit={handleSubmit}>
                                 {/* Email Input */}
                                 <div className='mb-5'>
-                                    <p className='leading-[1.429] text-sm font-medium text-[#344054]'>Email</p>
+                                    <p className='leading-[1.429] text-sm font-medium text-[#344054] mb-1.5'>Email</p>
                                     <Input
                                         type="email"
                                         placeholder="Enter your email"
@@ -190,7 +190,7 @@ function LoginPage() {
 
                                 {/* Password Input */}
                                 <div className='mb-6'>
-                                    <p className='leading-[1.429] text-sm font-medium text-[#344054]'>Password</p>
+                                    <p className='leading-[1.429] text-sm font-medium text-[#344054] mb-1.5'>Password</p>
                                     <Input
                                         type="password"
                                         placeholder="Enter your password"
@@ -223,7 +223,7 @@ function LoginPage() {
                                 <div className='mb-8 mt-6 max-[767px]:mb-3'>
                                     <Button
                                         type="submit"
-                                        className="w-full bg-[#2980B9] text-base leading-[1.5] text-white font-medium py-3 px-4 rounded-lg transition-all duration-50 ease-in-out transform hover:bg-[#1f5f8b] hover:scale-[1.02] hover:shadow-lg active:scale-[0.98] active:bg-[#1a4d73] focus:outline-none focus:ring-2 focus:ring-[#2980B9] focus:ring-opacity-50"
+                                        className="w-full bg-[#2980B9] text-base leading-[1.5] text-white font-medium py-2.5 px-4 rounded-lg transition-all duration-50 ease-in-out transform hover:bg-[#1f5f8b] hover:scale-[1.02] hover:shadow-lg active:scale-[0.98] active:bg-[#1a4d73] focus:outline-none focus:ring-2 focus:ring-[#2980B9] focus:ring-opacity-50"
                                     >
                                         Sign in
                                     </Button>
@@ -250,101 +250,100 @@ function LoginPage() {
                     {/* Right side - Testimonial */}
                     <div className=" relative max-w-[720px] w-full mt-[-151px] max-[1024px]:mt-0">
 
-                        {/* Overlay */}
-                        <div className='max-w-full w-full'>
-                            <img src="/assets/loginPage/loginImg.svg" alt="loginImg" />
-                            {/* Testimonial Card */}
-                            <div className="absolute inset-0 top-auto w-full z-10 flex flex-col justify-center items-center px-[40px] pb-[40px] max-[1100px]:px-3 max-[1100px]:pb-3">
-                                <div className="max-w-full px-[24px] py-[32px] text-center backdrop-blur-xl max-[1024px]:px-3 max-[1024px]:py-3">
-                                    <AnimatePresence mode="wait" custom={direction}>
-                                        <motion.div
-                                            key={currentTestimonial}
-                                            custom={direction}
-                                            variants={slideVariants}
-                                            initial="enter"
-                                            animate="center"
-                                            exit="exit"
-                                            transition={slideTransition}
-                                            className="w-full"
+                {/* Overlay */}
+                <div className='max-w-full w-full'>
+                    <img src="/assets/loginPage/loginImg.svg" alt="loginImg" />
+                    {/* Testimonial Card */}
+                    <div className="absolute inset-0 top-auto w-full z-10 flex flex-col justify-center items-center px-[40px] pb-[40px] max-[1100px]:px-3 max-[1100px]:pb-3">
+                        <div className="max-w-full px-[24px] py-[32px] text-center backdrop-blur-xl max-[1024px]:px-3 max-[1024px]:py-3">
+                            <AnimatePresence mode="wait" custom={direction}>
+                                <motion.div
+                                    key={currentTestimonial}
+                                    custom={direction}
+                                    variants={slideVariants}
+                                    initial="enter"
+                                    animate="center"
+                                    exit="exit"
+                                    transition={slideTransition}
+                                    className="w-full"
+                                >
+                                    <motion.div
+                                        variants={contentVariants}
+                                        initial="hidden"
+                                        animate="visible"
+                                        className="w-full"
+                                    >
+                                        {/* Quote */}
+                                        <motion.blockquote
+                                            className="text-white text-3xl text-left leading-[1.5834] font-medium mb-8 max-[1100px]:text-[20px] max-[1100px]:text-center max-[420px]:text-[16px]"
+                                            variants={itemVariants}
                                         >
-                                            <motion.div
-                                                variants={contentVariants}
-                                                initial="hidden"
-                                                animate="visible"
-                                                className="w-full"
-                                            >
-                                                {/* Quote */}
-                                                <motion.blockquote 
-                                                    className="text-white text-3xl text-left leading-[1.5834] font-medium mb-6 max-[1100px]:text-[16px]"
-                                                    variants={itemVariants}
-                                                >
-                                                    "{currentTestimonialData.quote}"
-                                                </motion.blockquote>
+                                            "{currentTestimonialData.quote}"
+                                        </motion.blockquote>
 
-                                                {/* Author Info */}
-                                                <motion.div 
-                                                    className="mb-4 flex justify-between h-[44px] max-[767px]:mb-[4px]"
-                                                    variants={itemVariants}
-                                                >
-                                                    <motion.p 
-                                                        className="text-white font-semibold text-4xl max-[1100px]:text-[24px] max-[1024px]:text-[20px]"
-                                                        variants={itemVariants}
-                                                    >
-                                                        {currentTestimonialData.author}
-                                                    </motion.p>
-                                                    {/* Rating Stars */}
-                                                    <motion.div 
-                                                        className="flex justify-center mb-8"
-                                                        variants={itemVariants}
-                                                    >
-                                                        <RatingStars rating={currentTestimonialData.rating} stars={5} />
-                                                    </motion.div>
-                                                </motion.div>
-                                                
-                                                <motion.div 
-                                                    className='flex justify-between max-[767px]:items-center'
-                                                    variants={itemVariants}
-                                                >
-                                                    <motion.p 
-                                                        className="text-gray-200 text-lg max-[767px]:text-[16px] max-[767px]:text-left"
-                                                        variants={itemVariants}
-                                                    >
-                                                        {currentTestimonialData.role}
-                                                    </motion.p>
-                                                     {/* Navigation Buttons */}
-                                    <div className="flex justify-center gap-8 max-[1024px]:gap-3 ">
-                                        <motion.button
-                                            onClick={goToPrevious}
-                                            className="p-[21px] rounded-[28px] bg-transparent border border-white h-14 w-14 flex items-center justify-center"
-                                            aria-label="Previous testimonial"
-                                            variants={buttonVariants}
-                                            initial="rest"
-                                            whileHover="hover"
-                                            whileTap="tap"
+                                        {/* Author Info */}
+                                        <motion.div
+                                            className="mb-4 flex justify-between h-[44px] max-[767px]:mb-[4px] max-[414px]:mb-0"
+                                            variants={itemVariants}
                                         >
-                                            <img className='w-[24px]' src="/assets/loginPage/leftArrow.svg" alt="leftArrow" />
-                                        </motion.button>
-                                        <motion.button
-                                            onClick={goToNext}
-                                            className="p-[21px] rounded-full bg-transparent border border-white h-14 w-14 flex items-center justify-center"
-                                            aria-label="Next testimonial"
-                                            variants={buttonVariants}
-                                            initial="rest"
-                                            whileHover="hover"
-                                            whileTap="tap"
-                                        >
-                                            <img src="/assets/loginPage/rightArrow.svg" alt="rightArrow" />
-                                        </motion.button>
-                                    </div>
-                                                </motion.div>
+                                            <motion.p
+                                                className="text-white font-semibold text-4xl max-[1100px]:text-[24px] max-[1024px]:text-[20px]"
+                                                variants={itemVariants}
+                                            >
+                                                {currentTestimonialData.author}
+                                            </motion.p>
+                                            {/* Rating Stars */}
+                                            <motion.div
+                                                className="flex justify-center mb-8"
+                                                variants={itemVariants}
+                                            >
+                                                <RatingStars rating={currentTestimonialData.rating} stars={5} />
                                             </motion.div>
                                         </motion.div>
-                                    </AnimatePresence>
-                                    
-                                   
-                                </div>
-                            </div>
+
+                                        <motion.div
+                                            className='flex justify-between max-[767px]:items-center max-[414px]:flex-col max-[414px]:gap-3'
+                                            variants={itemVariants}
+                                        >
+                                            <motion.p
+                                                className="text-gray-200 text-lg max-[767px]:text-[16px] max-[767px]:text-left"
+                                                variants={itemVariants}
+                                            >
+                                                {currentTestimonialData.role}
+                                            </motion.p>
+                                            {/* Navigation Buttons */}
+                                            <div className="flex justify-center gap-8 max-[1024px]:gap-3 ">
+                                                <motion.button
+                                                    onClick={goToPrevious}
+                                                    className="p-[21px] rounded-[28px] bg-transparent border border-white h-14 w-14 flex items-center justify-center"
+                                                    aria-label="Previous testimonial"
+                                                    variants={buttonVariants}
+                                                    initial="rest"
+                                                    whileHover="hover"
+                                                    whileTap="tap"
+                                                >
+                                                    <img className='w-[24px]' src="/assets/loginPage/leftArrow.svg" alt="leftArrow" />
+                                                </motion.button>
+                                                <motion.button
+                                                    onClick={goToNext}
+                                                    className="p-[21px] rounded-full bg-transparent border border-white h-14 w-14 flex items-center justify-center"
+                                                    aria-label="Next testimonial"
+                                                    variants={buttonVariants}
+                                                    initial="rest"
+                                                    whileHover="hover"
+                                                    whileTap="tap"
+                                                >
+                                                    <img src="/assets/loginPage/rightArrow.svg" alt="rightArrow" />
+                                                </motion.button>
+                                            </div>
+                                        </motion.div>
+                                    </motion.div>
+                                </motion.div>
+                            </AnimatePresence>
+
                         </div>
+                    </div>
+                </div>
                     </div>
                 </div>
             </div>
