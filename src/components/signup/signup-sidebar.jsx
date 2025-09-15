@@ -30,9 +30,10 @@ export const SignupSidebar = ({ currentStep, onStepChange, isMobile = false }) =
     <div className={`${isMobile ? 'w-full h-auto' : 'w-full h-full'} bg-[#304258] text-white flex flex-col`}>
       {/* Header */}
       <div className="p-6 lg:pt-12 lg:pb-20 lg:pl-12">
-        <div className="text-2xl font-bold tracking-wider">
+        <img src="./assets/signupPage/signUpLogo.png" alt="4M Institute" className="" />
+        {/* <div className="text-2xl font-bold tracking-wider">
           4MINSTITUTE
-        </div>
+        </div> */}
       </div>
 
       {/* Steps */}
@@ -58,14 +59,14 @@ export const SignupSidebar = ({ currentStep, onStepChange, isMobile = false }) =
                       isCompleted
                         ? 'bg-white border-white'
                         : isActive
-                        ? 'bg-[#2980B9] border-[#2980B9]'
+                        ? 'bg-white border-white'
                         : 'bg-transparent border-white/30'
                     }`}
                   >
                     {isCompleted ? (
                       <Check className="w-5 h-5 text-[#304258]" />
                     ) : isActive ? (
-                      <div className="w-2 h-2 bg-white rounded-full" />
+                      <div className="w-2 h-2 bg-[#2980B9] rounded-full" />
                     ) : (
                       <div className="w-2 h-2 bg-white/30 rounded-full" />
                     )}
