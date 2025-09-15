@@ -7,6 +7,7 @@ import { RouteProvider } from "./providers/router-provider";
 import { ThemeProvider } from "./providers/theme-provider";
 import "./styles/globals.css";
 import LoginPage from "./pages/loginPage";
+import Dashboard from "./pages/dashboard.jsx";
 createRoot(document.getElementById("root")).render(
     <StrictMode>
         <ThemeProvider>
@@ -15,6 +16,7 @@ createRoot(document.getElementById("root")).render(
                     <Routes>
                         <Route path="/signup" element={<SignUp />} />
                         <Route path="/" element={<LoginPage />} />
+                        <Route path="/dashboard" element={<Dashboard />} />
                         <Route path="*" element={<NotFound />} />
                     </Routes>
                 </RouteProvider>
