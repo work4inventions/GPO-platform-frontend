@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { useNavigate } from 'react-router'
+import { useNavigate, useLocation } from 'react-router'
 
 // Icons
 const BarChartIcon = () => (
@@ -48,42 +48,44 @@ const ChevronDownIcon = () => (
 
 // Navigation items configuration
 const navigationItems = [
-  { id: 'dashboard', label: 'Dashboard', icon: BarChartIcon, hasDropdown: false },
+  { id: 'dashboard', label: 'Dashboard', icon: BarChartIcon, hasDropdown: false, route: '/dashboard' },
   { 
     id: 'marketplace', 
     label: 'Market Place', 
     icon: StackedBoxesIcon, 
     hasDropdown: true,
     dropdownItems: [
-      { id: 'vendors', label: 'Vendors' },
-      { id: 'categories', label: 'Categories' },
-      { id: 'favorites', label: 'Favorites', badge: '0' }
+      { id: 'vendors', label: 'Vendors', route: '/vendors' },
+      { id: 'categories', label: 'Categories', route: '/categories' },
+      { id: 'favorites', label: 'Favorites', badge: '0', route: '/favorites' }
     ]
   },
-  { id: 'community', label: 'Community', icon: PeopleIcon, hasDropdown: false },
-  { id: 'events', label: 'Events', icon: CalendarIcon, hasDropdown: false },
-  { id: 'profile', label: 'Profile', icon: GlobeIcon, hasDropdown: false },
-  { id: 'settings', label: 'Settings', icon: SettingsIcon, hasDropdown: false },
+  { id: 'community', label: 'Community', icon: PeopleIcon, hasDropdown: false, route: '/community' },
+  { id: 'events', label: 'Events', icon: CalendarIcon, hasDropdown: false, route: '/events' },
+  { id: 'profile', label: 'Profile', icon: GlobeIcon, hasDropdown: false, route: '/profile' },
+  { id: 'settings', label: 'Settings', icon: SettingsIcon, hasDropdown: false, route: '/settings' },
 ]
 
-interface DashboardLayoutProps {
+interface LayoutWrapperProps {
   children: React.ReactNode
   activeTab?: string
-  onTabChange?: (tabId: string) => void
   userName?: string
   subscriptionInfo?: string
 }
 
-export default function DashboardLayout({ 
+export default function LayoutWrapper({ 
   children, 
-  activeTab = 'dashboard', 
-  onTabChange,
+  activeTab,
   userName = 'Dr. Olivia',
   subscriptionInfo = 'Your subscription: Education Plan - renews Sept 28, 2025'
-}: DashboardLayoutProps) {
+}: LayoutWrapperProps) {
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const [marketplaceDropdownOpen, setMarketplaceDropdownOpen] = useState(false)
   const navigate = useNavigate()
+  const location = useLocation()
+
+  // Get current active tab from URL path
+  const currentActiveTab = activeTab || location.pathname.replace('/', '') || 'dashboard'
 
   // Handle keyboard navigation
   const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -94,29 +96,17 @@ export default function DashboardLayout({
   }
 
   // Handle tab click
-  const handleTabClick = (tabId: string) => {
-    if (onTabChange) {
-      onTabChange(tabId)
-    }
-    // Navigate to the appropriate route
-    if (tabId === 'dashboard') {
-      navigate('/dashboard')
-    } else if (tabId === 'vendors') {
-      navigate('/vendors')
+  const handleTabClick = (tabId: string, route?: string) => {
+    if (route) {
+      navigate(route)
     }
   }
 
   // Handle dropdown item click
-  const handleDropdownItemClick = (itemId: string) => {
-    if (onTabChange) {
-      onTabChange(itemId)
-    }
+  const handleDropdownItemClick = (itemId: string, route?: string) => {
     setMarketplaceDropdownOpen(false)
-    // Navigate to the appropriate route
-    if (itemId === 'dashboard') {
-      navigate('/dashboard')
-    } else if (itemId === 'vendors') {
-      navigate('/vendors')
+    if (route) {
+      navigate(route)
     }
   }
 
@@ -147,7 +137,7 @@ export default function DashboardLayout({
               <button
                 className={`
                   w-full flex items-center justify-between px-3 py-2 text-sm font-medium rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500
-                  ${activeTab === item.id || (item.hasDropdown && activeTab.startsWith(item.id))
+                  ${currentActiveTab === item.id || (item.hasDropdown && currentActiveTab.startsWith('marketplace'))
                     ? 'bg-blue-100 text-blue-700'
                     : 'text-gray-700 hover:bg-gray-200'
                   }
@@ -156,7 +146,7 @@ export default function DashboardLayout({
                   if (item.hasDropdown) {
                     setMarketplaceDropdownOpen(!marketplaceDropdownOpen)
                   } else {
-                    handleTabClick(item.id)
+                    handleTabClick(item.id, item.route)
                   }
                 }}
                 aria-expanded={item.hasDropdown ? marketplaceDropdownOpen : undefined}
@@ -185,12 +175,12 @@ export default function DashboardLayout({
                       key={dropdownItem.id}
                       className={`
                         flex justify-between w-full text-left px-3 py-2 text-base rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500
-                        ${activeTab === dropdownItem.id
+                        ${currentActiveTab === dropdownItem.id
                           ? 'bg-blue-50 text-blue-700'
                           : 'text-[#344054] hover:bg-gray-200'
                         }
                       `}
-                      onClick={() => handleDropdownItemClick(dropdownItem.id)}
+                      onClick={() => handleDropdownItemClick(dropdownItem.id, dropdownItem.route)}
                       role="menuitem"
                     >
                       {dropdownItem.label}
@@ -233,7 +223,7 @@ export default function DashboardLayout({
               <button
                 className={`
                   w-full flex items-center justify-between px-3 py-2 text-sm font-medium rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500
-                  ${activeTab === item.id || (item.hasDropdown && activeTab.startsWith(item.id))
+                  ${currentActiveTab === item.id || (item.hasDropdown && currentActiveTab.startsWith('marketplace'))
                     ? 'bg-blue-100 text-blue-700'
                     : 'text-gray-700 hover:bg-gray-200'
                   }
@@ -242,7 +232,7 @@ export default function DashboardLayout({
                   if (item.hasDropdown) {
                     setMarketplaceDropdownOpen(!marketplaceDropdownOpen)
                   } else {
-                    handleTabClick(item.id)
+                    handleTabClick(item.id, item.route)
                     setSidebarOpen(false)
                   }
                 }}
@@ -272,13 +262,13 @@ export default function DashboardLayout({
                       key={dropdownItem.id}
                       className={`
                         flex justify-between w-full text-left px-3 py-2 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500
-                        ${activeTab === dropdownItem.id
+                        ${currentActiveTab === dropdownItem.id
                           ? 'bg-blue-50 text-blue-700'
                           : 'text-gray-600 hover:bg-gray-200'
                         }
                       `}
                       onClick={() => {
-                        handleDropdownItemClick(dropdownItem.id)
+                        handleDropdownItemClick(dropdownItem.id, dropdownItem.route)
                         setSidebarOpen(false)
                       }}
                       role="menuitem"

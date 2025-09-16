@@ -1,11 +1,15 @@
 import { Button } from "@/components/base/buttons/button";
 import { CheckCircle } from "@untitledui/icons";
+import { useNavigate } from "react-router";
 
 export const SignupStepFinish = ({ data, onPrevious }) => {
+  const navigate = useNavigate();
+
   const handleFinish = () => {
     // Here you would typically submit the data to your backend
     console.log("Signup completed:", data);
-    // You might redirect to a success page or dashboard
+    // Navigate to dashboard
+    navigate("/dashboard");
   };
 
   const selectedPlan = data.selectedPlan === "basic" ? "Basic plan" : "Education+";

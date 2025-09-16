@@ -89,7 +89,7 @@ export const SignupPlan = ({ data, onDataUpdate, onNext, onPrevious }) => {
           return (
             <div
               key={plan.id}
-              className={`relative otline-offset-1 outline-1 outline-gray-200 shadow-lg rounded-2xl cursor-pointer transition-all duration-200 p-8 ${
+              className={`relative otline-offset-1 outline-1 outline-gray-200 shadow-lg rounded-2xl cursor-pointer transition-all duration-200 p-8 flex flex-col h-full ${
                 isSelected
                   ? 'border-[#2980B9] bg-blue-50'
                   : 'border-gray-200 hover:border-gray-300'
@@ -113,9 +113,9 @@ export const SignupPlan = ({ data, onDataUpdate, onNext, onPrevious }) => {
                 </div>
               </div>
 
-             <div>
+             <div className="flex flex-col h-full">
                {/* Features */}
-               <div className="space-y-3 ">
+               <div className="space-y-3 flex-1">
                 {plan.features.map((feature, index) => (
                   <div key={index} className="flex items-start gap-3 mb-4">
                     <Check className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />

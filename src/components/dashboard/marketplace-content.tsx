@@ -1,5 +1,7 @@
 import React from 'react'
 import { motion } from 'framer-motion'
+// @ts-ignore
+import Vendors from './vendors'
 
 interface MarketplaceContentProps {
   activeTab: string
@@ -12,14 +14,7 @@ export default function MarketplaceContent({ activeTab }: MarketplaceContentProp
         return {
           title: 'Vendors',
           description: 'Browse and manage your vendor relationships',
-          content: (
-            <div className="space-y-4">
-              <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-                <h4 className="text-lg font-semibold mb-4">Vendor Directory</h4>
-                <p className="text-gray-600">Manage your vendor relationships and view vendor profiles.</p>
-              </div>
-            </div>
-          )
+          content: <Vendors />
         }
       case 'categories':
         return {
