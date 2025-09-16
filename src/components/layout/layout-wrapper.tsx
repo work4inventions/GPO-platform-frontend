@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { useNavigate } from 'react-router'
+import { useNavigate, useLocation } from 'react-router'
 
 // Icons
 const BarChartIcon = () => (
@@ -40,6 +40,12 @@ const SettingsIcon = () => (
   </svg>
 )
 
+const LogoutIcon = () => (
+  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+  </svg>
+)
+
 const ChevronDownIcon = () => (
   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
@@ -48,42 +54,44 @@ const ChevronDownIcon = () => (
 
 // Navigation items configuration
 const navigationItems = [
-  { id: 'dashboard', label: 'Dashboard', icon: BarChartIcon, hasDropdown: false },
+  { id: 'dashboard', label: 'Dashboard', icon: BarChartIcon, hasDropdown: false, route: '/dashboard' },
   { 
     id: 'marketplace', 
     label: 'Market Place', 
     icon: StackedBoxesIcon, 
     hasDropdown: true,
     dropdownItems: [
-      { id: 'vendors', label: 'Vendors' },
-      { id: 'categories', label: 'Categories' },
-      { id: 'favorites', label: 'Favorites', badge: '0' }
+      { id: 'vendors', label: 'Vendors', route: '/vendors' },
+      { id: 'categories', label: 'Categories', route: '/categories' },
+      { id: 'favorites', label: 'Favorites', badge: '0', route: '/favorites' }
     ]
   },
-  { id: 'community', label: 'Community', icon: PeopleIcon, hasDropdown: false },
-  { id: 'events', label: 'Events', icon: CalendarIcon, hasDropdown: false },
-  { id: 'profile', label: 'Profile', icon: GlobeIcon, hasDropdown: false },
-  { id: 'settings', label: 'Settings', icon: SettingsIcon, hasDropdown: false },
+  { id: 'community', label: 'Community', icon: PeopleIcon, hasDropdown: false, route: '/community' },
+  { id: 'events', label: 'Events', icon: CalendarIcon, hasDropdown: false, route: '/events' },
+  { id: 'profile', label: 'Profile', icon: GlobeIcon, hasDropdown: false, route: '/profile' },
+  { id: 'settings', label: 'Settings', icon: SettingsIcon, hasDropdown: false, route: '/settings' },
 ]
 
-interface DashboardLayoutProps {
+interface LayoutWrapperProps {
   children: React.ReactNode
   activeTab?: string
-  onTabChange?: (tabId: string) => void
   userName?: string
   subscriptionInfo?: string
 }
 
-export default function DashboardLayout({ 
+export default function LayoutWrapper({ 
   children, 
-  activeTab = 'dashboard', 
-  onTabChange,
+  activeTab,
   userName = 'Dr. Olivia',
   subscriptionInfo = 'Your subscription: Education Plan - renews Sept 28, 2025'
-}: DashboardLayoutProps) {
+}: LayoutWrapperProps) {
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const [marketplaceDropdownOpen, setMarketplaceDropdownOpen] = useState(false)
   const navigate = useNavigate()
+  const location = useLocation()
+
+  // Get current active tab from URL path
+  const currentActiveTab = activeTab || location.pathname.replace('/', '') || 'dashboard'
 
   // Handle keyboard navigation
   const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -94,30 +102,23 @@ export default function DashboardLayout({
   }
 
   // Handle tab click
-  const handleTabClick = (tabId: string) => {
-    if (onTabChange) {
-      onTabChange(tabId)
-    }
-    // Navigate to the appropriate route
-    if (tabId === 'dashboard') {
-      navigate('/dashboard')
-    } else if (tabId === 'vendors') {
-      navigate('/vendors')
+  const handleTabClick = (_tabId: string, route?: string) => {
+    if (route) {
+      navigate(route)
     }
   }
 
   // Handle dropdown item click
-  const handleDropdownItemClick = (itemId: string) => {
-    if (onTabChange) {
-      onTabChange(itemId)
-    }
+  const handleDropdownItemClick = (_itemId: string, route?: string) => {
     setMarketplaceDropdownOpen(false)
-    // Navigate to the appropriate route
-    if (itemId === 'dashboard') {
-      navigate('/dashboard')
-    } else if (itemId === 'vendors') {
-      navigate('/vendors')
+    if (route) {
+      navigate(route)
     }
+  }
+
+  // Handle logout
+  const handleLogout = () => {
+    navigate('/')
   }
 
   return (
@@ -136,7 +137,7 @@ export default function DashboardLayout({
       </AnimatePresence>
 
       {/* Desktop Sidebar */}
-      <div className="hidden lg:flex lg:flex-col w-full max-w-[280px] bg-gray-100">
+      <div className="hidden lg:flex lg:flex-col w-full max-w-[280px] bg-gray-100 sticky top-0 h-screen overflow-y-auto">
         <div className="mt-8 ml-6 mb-6">
           <img src="/assets/loginPage/componyLogo.png" alt="companyLogo" />
         </div>
@@ -147,7 +148,7 @@ export default function DashboardLayout({
               <button
                 className={`
                   w-full flex items-center justify-between px-3 py-2 text-sm font-medium rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500
-                  ${activeTab === item.id || (item.hasDropdown && activeTab.startsWith(item.id))
+                  ${currentActiveTab === item.id || (item.hasDropdown && currentActiveTab.startsWith('marketplace'))
                     ? 'bg-blue-100 text-blue-700'
                     : 'text-gray-700 hover:bg-gray-200'
                   }
@@ -156,7 +157,7 @@ export default function DashboardLayout({
                   if (item.hasDropdown) {
                     setMarketplaceDropdownOpen(!marketplaceDropdownOpen)
                   } else {
-                    handleTabClick(item.id)
+                    handleTabClick(item.id, item.route)
                   }
                 }}
                 aria-expanded={item.hasDropdown ? marketplaceDropdownOpen : undefined}
@@ -185,12 +186,12 @@ export default function DashboardLayout({
                       key={dropdownItem.id}
                       className={`
                         flex justify-between w-full text-left px-3 py-2 text-base rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500
-                        ${activeTab === dropdownItem.id
+                        ${currentActiveTab === dropdownItem.id
                           ? 'bg-blue-50 text-blue-700'
                           : 'text-[#344054] hover:bg-gray-200'
                         }
                       `}
-                      onClick={() => handleDropdownItemClick(dropdownItem.id)}
+                      onClick={() => handleDropdownItemClick(dropdownItem.id, dropdownItem.route)}
                       role="menuitem"
                     >
                       {dropdownItem.label}
@@ -206,6 +207,17 @@ export default function DashboardLayout({
             </div>
           ))}
         </nav>
+
+        {/* Logout Button - Desktop */}
+        <div className="px-3 sm:px-4 py-4 border-t border-gray-200">
+          <button
+            onClick={handleLogout}
+            className="w-full flex items-center space-x-3 px-3 py-2 text-sm font-medium text-red-600 hover:bg-red-50 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-red-500"
+          >
+            <LogoutIcon />
+            <span>Logout</span>
+          </button>
+        </div>
       </div>
 
       {/* Mobile Sidebar */}
@@ -233,7 +245,7 @@ export default function DashboardLayout({
               <button
                 className={`
                   w-full flex items-center justify-between px-3 py-2 text-sm font-medium rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500
-                  ${activeTab === item.id || (item.hasDropdown && activeTab.startsWith(item.id))
+                  ${currentActiveTab === item.id || (item.hasDropdown && currentActiveTab.startsWith('marketplace'))
                     ? 'bg-blue-100 text-blue-700'
                     : 'text-gray-700 hover:bg-gray-200'
                   }
@@ -242,7 +254,7 @@ export default function DashboardLayout({
                   if (item.hasDropdown) {
                     setMarketplaceDropdownOpen(!marketplaceDropdownOpen)
                   } else {
-                    handleTabClick(item.id)
+                    handleTabClick(item.id, item.route)
                     setSidebarOpen(false)
                   }
                 }}
@@ -272,13 +284,13 @@ export default function DashboardLayout({
                       key={dropdownItem.id}
                       className={`
                         flex justify-between w-full text-left px-3 py-2 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500
-                        ${activeTab === dropdownItem.id
+                        ${currentActiveTab === dropdownItem.id
                           ? 'bg-blue-50 text-blue-700'
                           : 'text-gray-600 hover:bg-gray-200'
                         }
                       `}
                       onClick={() => {
-                        handleDropdownItemClick(dropdownItem.id)
+                        handleDropdownItemClick(dropdownItem.id, dropdownItem.route)
                         setSidebarOpen(false)
                       }}
                       role="menuitem"
@@ -296,12 +308,26 @@ export default function DashboardLayout({
             </div>
           ))}
         </nav>
+
+        {/* Logout Button - Mobile */}
+        <div className="px-3 sm:px-4 py-4 border-t border-gray-200">
+          <button
+            onClick={() => {
+              handleLogout()
+              setSidebarOpen(false)
+            }}
+            className="w-full flex items-center space-x-3 px-3 py-2 text-sm font-medium text-red-600 hover:bg-red-50 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-red-500"
+          >
+            <LogoutIcon />
+            <span>Logout</span>
+          </button>
+        </div>
       </motion.div>
 
       {/* Main content */}
       <div className="flex-1 flex flex-col min-h-screen">
         {/* Header */}
-        <header className="bg-white px-8 max-sm:px-6 py-[13px] my-[5px]">
+        <header className="bg-white px-8 max-sm:px-6 py-[13px] my-[5px] sticky top-0 z-30">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2 sm:space-x-4">
               <button
@@ -331,7 +357,7 @@ export default function DashboardLayout({
         </header>
 
         {/* Content Area */}
-        <main className="flex-1 pt-5 pb-12 px-8">
+        <main className="flex-1 p-6 overflow-y-auto">
           {children}
         </main>
       </div>

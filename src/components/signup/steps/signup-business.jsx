@@ -156,13 +156,14 @@ export const SignupBusiness = ({ data, onDataUpdate, onNext, onPrevious }) => {
           
         <div className="space-y-2">
           <label className="text-sm font-medium text-gray-700">Phone</label>
-          <div className="flex space-x-2">
-            <div className="w-32">
+          <div className="relative flex w-full items-center rounded-lg bg-primary shadow-xs ring-1 ring-primary ring-inset">
+            <div className="min-w-28">
               <Select
                 placeholder={`${selectedPhoneCode.flag} ${selectedPhoneCode.label} ${selectedPhoneCode.supportingText}`}
                 items={phoneCodes}
                 selectedKey={selectedPhoneCode.id}
                 isDisabled={!data.country}
+                className="[&>button]:bg-transparent [&>button]:ring-0 [&>button]:shadow-none [&>button]:rounded-none"
                 onSelectionChange={(key) => {
                   const code = phoneCodes.find(c => c.id === key);
                   if (code) setSelectedPhoneCode(code);
@@ -172,20 +173,20 @@ export const SignupBusiness = ({ data, onDataUpdate, onNext, onPrevious }) => {
                   <Select.Item key={item.id} id={item.id}>
                     <div className="flex items-center space-x-2">
                       <span>{item.flag}</span>
-                      <span>{item.label}</span>
+                      <span className="font-medium">{item.label}</span>
                       <span className="text-gray-500">{item.supportingText}</span>
                     </div>
                   </Select.Item>
                 )}
               </Select>
             </div>
-              <div className="flex-1">
-                <Input
-                  placeholder="Enter phone number"
-                  value={data.phone}
-                  onChange={(value) => onDataUpdate({ phone: value })}
-                />
-              </div>
+            <input
+              type="text"
+              placeholder="Enter phone number"
+              value={data.phone}
+              onChange={(e) => onDataUpdate({ phone: e.target.value })}
+              className="m-0 w-full bg-transparent text-md text-primary ring-0 outline-hidden px-3 py-2.5"
+            />
           </div>
         </div>
         </div>
@@ -193,24 +194,25 @@ export const SignupBusiness = ({ data, onDataUpdate, onNext, onPrevious }) => {
       </div>
 
       {/* Actions */}
-      <div className=" flex flex-col w-[50%] max-md:w-full  max-md:flex-row max-md:gap-6">
-      <Button
-          size="md"
-          className="flex-1 mb-6 text-base leading-[1.5] font-semibold"
-          onClick={handleNext}
-          style={{ backgroundColor: '#2980B9' }}
-        >
-          Continue
-        </Button>
+      <div className=" flex w-full justify-between gap-6 max-md:flex-col">
         <Button
           size="md"
           color="secondary"
-          className="flex-1 text-base leading-[1.5] font-semibold "
+          className="md:w-[48%] w-full text-base leading-[1.5] font-semibold "
           onClick={onPrevious}
         >   
           Previous
         </Button>
        
+      <Button
+          size="md"
+          className="md:w-[48%] w-full text-base leading-[1.5] font-semibold"
+          onClick={handleNext}
+          style={{ backgroundColor: '#2980B9' }}
+        >
+          Continue
+        </Button>
+        
       </div>
     </div>
   );

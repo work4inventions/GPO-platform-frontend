@@ -1,8 +1,13 @@
 import React from 'react'
-import MainDashboard from '@/components/dashboard/main-dashboard'
+import LayoutWrapper from '@/components/layout/layout-wrapper'
+import DashboardContent from '@/components/dashboard/dashboard-content'
 
-function Dashboard() {
-  return <MainDashboard />
+function DashboardPage() {
+  return (
+    <LayoutWrapper activeTab="dashboard">
+      <DashboardContent />
+    </LayoutWrapper>
+  )
 }
 
-export default Dashboard
+export default DashboardPage
