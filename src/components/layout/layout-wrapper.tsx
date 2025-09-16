@@ -102,14 +102,14 @@ export default function LayoutWrapper({
   }
 
   // Handle tab click
-  const handleTabClick = (tabId: string, route?: string) => {
+  const handleTabClick = (_tabId: string, route?: string) => {
     if (route) {
       navigate(route)
     }
   }
 
   // Handle dropdown item click
-  const handleDropdownItemClick = (itemId: string, route?: string) => {
+  const handleDropdownItemClick = (_itemId: string, route?: string) => {
     setMarketplaceDropdownOpen(false)
     if (route) {
       navigate(route)
