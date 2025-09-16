@@ -40,6 +40,12 @@ const SettingsIcon = () => (
   </svg>
 )
 
+const LogoutIcon = () => (
+  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+  </svg>
+)
+
 const ChevronDownIcon = () => (
   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
@@ -110,6 +116,11 @@ export default function LayoutWrapper({
     }
   }
 
+  // Handle logout
+  const handleLogout = () => {
+    navigate('/')
+  }
+
   return (
     <div className="min-h-screen bg-gray-50 flex" onKeyDown={handleKeyDown}>
       {/* Mobile sidebar overlay */}
@@ -126,7 +137,7 @@ export default function LayoutWrapper({
       </AnimatePresence>
 
       {/* Desktop Sidebar */}
-      <div className="hidden lg:flex lg:flex-col w-full max-w-[280px] bg-gray-100">
+      <div className="hidden lg:flex lg:flex-col w-full max-w-[280px] bg-gray-100 sticky top-0 h-screen overflow-y-auto">
         <div className="mt-8 ml-6 mb-6">
           <img src="/assets/loginPage/componyLogo.png" alt="companyLogo" />
         </div>
@@ -196,6 +207,17 @@ export default function LayoutWrapper({
             </div>
           ))}
         </nav>
+
+        {/* Logout Button - Desktop */}
+        <div className="px-3 sm:px-4 py-4 border-t border-gray-200">
+          <button
+            onClick={handleLogout}
+            className="w-full flex items-center space-x-3 px-3 py-2 text-sm font-medium text-red-600 hover:bg-red-50 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-red-500"
+          >
+            <LogoutIcon />
+            <span>Logout</span>
+          </button>
+        </div>
       </div>
 
       {/* Mobile Sidebar */}
@@ -286,12 +308,26 @@ export default function LayoutWrapper({
             </div>
           ))}
         </nav>
+
+        {/* Logout Button - Mobile */}
+        <div className="px-3 sm:px-4 py-4 border-t border-gray-200">
+          <button
+            onClick={() => {
+              handleLogout()
+              setSidebarOpen(false)
+            }}
+            className="w-full flex items-center space-x-3 px-3 py-2 text-sm font-medium text-red-600 hover:bg-red-50 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-red-500"
+          >
+            <LogoutIcon />
+            <span>Logout</span>
+          </button>
+        </div>
       </motion.div>
 
       {/* Main content */}
       <div className="flex-1 flex flex-col min-h-screen">
         {/* Header */}
-        <header className="bg-white px-8 max-sm:px-6 py-[13px] my-[5px]">
+        <header className="bg-white px-8 max-sm:px-6 py-[13px] my-[5px] sticky top-0 z-30">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2 sm:space-x-4">
               <button
@@ -321,7 +357,7 @@ export default function LayoutWrapper({
         </header>
 
         {/* Content Area */}
-        <main className="flex-1 p-6">
+        <main className="flex-1 p-6 overflow-y-auto">
           {children}
         </main>
       </div>

@@ -1,25 +1,15 @@
 import { Button } from "@/components/base/buttons/button";
 import { CheckCircle } from "@untitledui/icons";
-<<<<<<< HEAD
-import { useNavigate } from "react-router";
-
-export const SignupStepFinish = ({ data, onPrevious }) => {
-=======
 import { useToast } from "@/components/base/toast";
 import { useNavigate } from "react-router";
 
 export const SignupStepFinish = ({ data, onPrevious }) => {
   const { showSuccess } = useToast();
->>>>>>> 08559fd0263d9426126897b8ce70b0db6f98c30f
   const navigate = useNavigate();
 
   const handleFinish = () => {
     // Here you would typically submit the data to your backend
     console.log("Signup completed:", data);
-<<<<<<< HEAD
-    // Navigate to dashboard
-    navigate("/dashboard");
-=======
     
     // Show success toast
     showSuccess(
@@ -32,7 +22,6 @@ export const SignupStepFinish = ({ data, onPrevious }) => {
     setTimeout(() => {
       navigate('/dashboard');
     }, 2000);
->>>>>>> 08559fd0263d9426126897b8ce70b0db6f98c30f
   };
 
   const selectedPlan = data.selectedPlan === "basic" ? "Basic plan" : "Education+";
