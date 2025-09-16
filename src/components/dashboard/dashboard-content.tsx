@@ -1,5 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
+import { Button } from 'react-aria-components'
 
 // Icons
 const MoreVerticalIcon = () => (
@@ -52,9 +53,24 @@ interface DashboardContentProps {
 
 export default function DashboardContent({ activeTab: _ }: DashboardContentProps) {
   return (
-    <div className="space-y-6">
+    <div className="">
+      {/* <div className='flex items-center justify-between'>
+        <h1 className='text-2xl font-semibold leading-[1.5835]'>Dashboard</h1>
+        <div>
+          <img src="" alt="" />
+          <p>Export</p>
+        </div>
+
+      </div> */}
+       <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-6 sm:mb-8 gap-4">
+            <h1 className="text-xl sm:text-2xl font-semibold text-gray-900">Dashboard</h1>
+            <Button className="flex items-center justify-center space-x-2 bg-blue-600 text-white px-4 py-2 rounded- hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+              <img src="/assets/dashboard/exportIcon.svg" alt="exportIcon" />
+              <span>Export</span>
+            </Button>
+          </div>
       {/* Summary Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-5">
         {summaryCards.map((card) => (
           <motion.div
             key={card.id}
