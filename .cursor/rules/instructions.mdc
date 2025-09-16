@@ -1,0 +1,8 @@
+---
+description:
+globs:
+alwaysApply: true
+---
+
+ALWAYS use .jsx for creating components instead of .tsx.
+ALWAYS use the same file naming cenvention "file-name.jsx" rather than any other casing.
