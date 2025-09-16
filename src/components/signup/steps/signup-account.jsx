@@ -5,27 +5,52 @@ import { Button } from "@/components/base/buttons/button";
 export const SignupAccount = ({ data, onDataUpdate, onNext }) => {
   const [errors, setErrors] = useState({});
 
+  const validateName = (value) => {
+    if (!value.trim()) return "Name is required";
+    return "";
+  };
+
+  const validateEmail = (value) => {
+    if (!value.trim()) return "Email is required";
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) return "Please enter a valid email";
+    return "";
+  };
+
+  const validatePassword = (value) => {
+    if (!value.trim()) return "Password is required";
+    if (value.length < 8) return "Password must be at least 8 characters";
+    return "";
+  };
+
   const validateForm = () => {
     const newErrors = {};
 
-    if (!data.name.trim()) {
-      newErrors.name = "Name is required";
-    }
+    const nameErr = validateName(data.name);
+    const emailErr = validateEmail(data.email);
+    const passwordErr = validatePassword(data.password);
 
-    if (!data.email.trim()) {
-      newErrors.email = "Email is required";
-    } else if (!/\S+@\S+\.\S+/.test(data.email)) {
-      newErrors.email = "Please enter a valid email";
-    }
-
-    if (!data.password.trim()) {
-      newErrors.password = "Password is required";
-    } else if (data.password.length < 8) {
-      newErrors.password = "Password must be at least 8 characters";
-    }
+    if (nameErr) newErrors.name = nameErr;
+    if (emailErr) newErrors.email = emailErr;
+    if (passwordErr) newErrors.password = passwordErr;
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
+  };
+
+  // Live onChange validators
+  const handleNameChange = (value) => {
+    onDataUpdate({ name: value });
+    setErrors((prev) => ({ ...prev, name: validateName(value) }));
+  };
+
+  const handleEmailChange = (value) => {
+    onDataUpdate({ email: value });
+    setErrors((prev) => ({ ...prev, email: validateEmail(value) }));
+  };
+
+  const handlePasswordChange = (value) => {
+    onDataUpdate({ password: value });
+    setErrors((prev) => ({ ...prev, password: validatePassword(value) }));
   };
 
   const handleNext = () => {
@@ -50,7 +75,7 @@ export const SignupAccount = ({ data, onDataUpdate, onNext }) => {
           label="Name*"
           placeholder="Enter your name"
           value={data.name}
-          onChange={(value) => onDataUpdate({ name: value })}
+          onChange={handleNameChange}
           isInvalid={!!errors.name}
           hint={errors.name}
         />
@@ -60,7 +85,7 @@ export const SignupAccount = ({ data, onDataUpdate, onNext }) => {
           placeholder="Enter your email"
           type="email"
           value={data.email}
-          onChange={(value) => onDataUpdate({ email: value })}
+          onChange={handleEmailChange}
           isInvalid={!!errors.email}
           hint={errors.email}
         />
@@ -70,7 +95,7 @@ export const SignupAccount = ({ data, onDataUpdate, onNext }) => {
           placeholder="Create a password"
           type="password"
           value={data.password}
-          onChange={(value) => onDataUpdate({ password: value })}
+          onChange={handlePasswordChange}
           isInvalid={!!errors.password}
           hint={errors.password || "Must be at least 8 characters"}
         />

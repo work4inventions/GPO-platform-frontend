@@ -1,11 +1,27 @@
 import { Button } from "@/components/base/buttons/button";
 import { CheckCircle } from "@untitledui/icons";
+import { useToast } from "@/components/base/toast";
+import { useNavigate } from "react-router";
 
 export const SignupStepFinish = ({ data, onPrevious }) => {
+  const { showSuccess } = useToast();
+  const navigate = useNavigate();
+
   const handleFinish = () => {
     // Here you would typically submit the data to your backend
     console.log("Signup completed:", data);
-    // You might redirect to a success page or dashboard
+    
+    // Show success toast
+    showSuccess(
+      'Account Created Successfully!',
+      'Welcome to 4M Institute! Redirecting to dashboard...',
+      { duration: 4000 }
+    );
+    
+    // Navigate to dashboard after showing toast
+    setTimeout(() => {
+      navigate('/dashboard');
+    }, 2000);
   };
 
   const selectedPlan = data.selectedPlan === "basic" ? "Basic plan" : "Education+";

@@ -317,7 +317,7 @@ export default function DashboardLayout({
         </header>
 
         {/* Content Area */}
-        <main className="flex-1 p-6">
+        <main className="flex-1 pt-5 pb-12 px-8">
           {children}
         </main>
       </div>
