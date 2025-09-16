@@ -614,7 +614,7 @@ function LoginPage() {
                                             <div className="flex justify-center gap-8 max-[1024px]:gap-3 ">
                                                 <motion.button
                                                     onClick={goToPrevious}
-                                                    className="p-[21px] rounded-[28px] bg-transparent border border-white h-14 w-14 flex items-center justify-center backdrop-blur-sm"
+                                                    className="cursor-pointer p-[21px] rounded-[28px] bg-transparent border border-white h-14 w-14 flex items-center justify-center backdrop-blur-sm"
                                                     aria-label="Previous testimonial"
                                                     variants={buttonVariants}
                                                     initial="rest"
@@ -637,7 +637,7 @@ function LoginPage() {
                                                 </motion.button>
                                                 <motion.button
                                                     onClick={goToNext}
-                                                    className="p-[21px] rounded-full bg-transparent border border-white h-14 w-14 flex items-center justify-center backdrop-blur-sm"
+                                                    className="cursor-pointer p-[21px] rounded-full bg-transparent border border-white h-14 w-14 flex items-center justify-center backdrop-blur-sm"
                                                     aria-label="Next testimonial"
                                                     variants={buttonVariants}
                                                     initial="rest"
