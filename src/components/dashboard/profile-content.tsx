@@ -5,7 +5,7 @@ interface ProfileContentProps {
   activeTab: string
 }
 
-export default function ProfileContent({ activeTab }: ProfileContentProps) {
+export default function ProfileContent({ activeTab: _ }: ProfileContentProps) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}

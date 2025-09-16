@@ -5,7 +5,7 @@ interface SettingsContentProps {
   activeTab: string
 }
 
-export default function SettingsContent({ activeTab }: SettingsContentProps) {
+export default function SettingsContent({ activeTab: _ }: SettingsContentProps) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}

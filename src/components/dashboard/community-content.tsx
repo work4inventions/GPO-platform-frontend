@@ -5,7 +5,7 @@ interface CommunityContentProps {
   activeTab: string
 }
 
-export default function CommunityContent({ activeTab }: CommunityContentProps) {
+export default function CommunityContent({ activeTab: _ }: CommunityContentProps) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}

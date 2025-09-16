@@ -5,7 +5,7 @@ interface EventsContentProps {
   activeTab: string
 }
 
-export default function EventsContent({ activeTab }: EventsContentProps) {
+export default function EventsContent({ activeTab: _ }: EventsContentProps) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
