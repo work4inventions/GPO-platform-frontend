@@ -505,7 +505,7 @@ function LoginPage() {
                                         onChange={setRememberMe}
                                         label="Remember me"
                                         size="sm"
-                                        className='leading-[1.429] text-sm'
+                                        className='leading-[1.429] text-sm text-black'
                                     />
                                     <Button
                                         color="link-gray"
