@@ -147,7 +147,7 @@ export default function LayoutWrapper({
             <div key={item.id}>
               <button
                 className={`
-                  w-full flex items-center justify-between px-3 py-2 text-sm font-medium rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500
+                  w-full flex items-center justify-between px-3 py-2 text-sm font-medium rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer
                   ${currentActiveTab === item.id || (item.hasDropdown && currentActiveTab.startsWith('marketplace'))
                     ? 'bg-blue-100 text-blue-700'
                     : 'text-gray-700 hover:bg-gray-200'
@@ -185,7 +185,7 @@ export default function LayoutWrapper({
                     <button
                       key={dropdownItem.id}
                       className={`
-                        flex justify-between w-full text-left px-3 py-2 text-base rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500
+                        flex justify-between w-full text-left px-3 py-2 text-base rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer
                         ${currentActiveTab === dropdownItem.id
                           ? 'bg-blue-50 text-blue-700'
                           : 'text-[#344054] hover:bg-gray-200'
@@ -212,7 +212,7 @@ export default function LayoutWrapper({
         <div className="px-3 sm:px-4 py-4 border-t border-gray-200">
           <button
             onClick={handleLogout}
-            className="w-full flex items-center space-x-3 px-3 py-2 text-sm font-medium text-red-600 hover:bg-red-50 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-red-500"
+            className="w-full flex items-center space-x-3 px-3 py-2 text-sm font-medium text-red-600 hover:bg-red-50 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-red-500 cursor-pointer"
           >
             <LogoutIcon />
             <span>Logout</span>
@@ -230,7 +230,7 @@ export default function LayoutWrapper({
           <h1 className="text-lg sm:text-xl font-semibold text-gray-900">4M INSTITUTE</h1>
           <button
             onClick={() => setSidebarOpen(false)}
-            className="lg:hidden p-2 rounded-md text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="lg:hidden p-2 rounded-md text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer"
             aria-label="Close sidebar"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -244,7 +244,7 @@ export default function LayoutWrapper({
             <div key={item.id}>
               <button
                 className={`
-                  w-full flex items-center justify-between px-3 py-2 text-sm font-medium rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500
+                  w-full flex items-center justify-between px-3 py-2 text-sm font-medium rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer
                   ${currentActiveTab === item.id || (item.hasDropdown && currentActiveTab.startsWith('marketplace'))
                     ? 'bg-blue-100 text-blue-700'
                     : 'text-gray-700 hover:bg-gray-200'
@@ -283,7 +283,7 @@ export default function LayoutWrapper({
                     <button
                       key={dropdownItem.id}
                       className={`
-                        flex justify-between w-full text-left px-3 py-2 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500
+                        flex justify-between w-full text-left px-3 py-2 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer
                         ${currentActiveTab === dropdownItem.id
                           ? 'bg-blue-50 text-blue-700'
                           : 'text-gray-600 hover:bg-gray-200'
@@ -316,7 +316,7 @@ export default function LayoutWrapper({
               handleLogout()
               setSidebarOpen(false)
             }}
-            className="w-full flex items-center space-x-3 px-3 py-2 text-sm font-medium text-red-600 hover:bg-red-50 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-red-500"
+            className="w-full flex items-center space-x-3 px-3 py-2 text-sm font-medium text-red-600 hover:bg-red-50 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-red-500 cursor-pointer"
           >
             <LogoutIcon />
             <span>Logout</span>
@@ -332,7 +332,7 @@ export default function LayoutWrapper({
             <div className="flex items-center space-x-2 sm:space-x-4">
               <button
                 onClick={() => setSidebarOpen(true)}
-                className="lg:hidden p-2 rounded-md text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="lg:hidden p-2 rounded-md text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer"
                 aria-label="Open sidebar"
               >
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -350,7 +350,7 @@ export default function LayoutWrapper({
               <img className='cursor-pointer mr-1 p-2.5' src="/assets/dashboard/searchIcon.svg" alt="searchIcon" />
               <img className='cursor-pointer mr-1 p-2.5 h-10 w-10' src="/assets/dashboard/notificationIcon.svg" alt="notificationIcon" />
               <div className=" rounded-[50%] bg-gray-300  flex items-center justify-center">
-                <img className='w-10 h-10 object-cover object-center rounded-[50%]' src="/assets/dashboard/adminImg.jpg" alt="admin" />
+                <img className='w-10 h-10 object-cover object-center rounded-[50%] cursor-pointer' src="/assets/dashboard/adminImg.jpg" alt="admin" />
               </div>
             </div>
           </div>
