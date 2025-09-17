@@ -2,9 +2,105 @@
 @import "./theme.css";
 @import "./typography.css";
 
+/* Ensure CSS variables are available even without theme class */
+:root {
+    --color-bg-primary: var(--color-white);
+    --color-bg-primary_hover: var(--color-gray-50);
+    --color-bg-primary_alt: var(--color-white);
+    --color-bg-primary-solid: var(--color-gray-950);
+}
+
 @plugin "@tailwindcss/typography";
 @plugin "tailwindcss-react-aria-components";
 @plugin "tailwindcss-animate";
+
+@utility bg-primary {
+    background-color: var(--color-bg-primary);
+}
+
+@utility bg-primary_hover {
+    background-color: var(--color-bg-primary_hover);
+}
+
+@utility bg-primary_alt {
+    background-color: var(--color-bg-primary_alt);
+}
+
+@utility bg-primary-solid {
+    background-color: var(--color-bg-primary-solid);
+}
+
+@utility bg-secondary {
+    background-color: var(--color-bg-secondary);
+}
+
+@utility bg-secondary_hover {
+    background-color: var(--color-bg-secondary_hover);
+}
+
+@utility bg-secondary_alt {
+    background-color: var(--color-bg-secondary_alt);
+}
+
+@utility bg-secondary-solid {
+    background-color: var(--color-bg-secondary-solid);
+}
+
+@utility bg-tertiary {
+    background-color: var(--color-bg-tertiary);
+}
+
+@utility bg-disabled {
+    background-color: var(--color-bg-disabled);
+}
+
+@utility bg-disabled_subtle {
+    background-color: var(--color-bg-disabled_subtle);
+}
+
+@utility bg-active {
+    background-color: var(--color-bg-active);
+}
+
+@utility bg-brand-primary {
+    background-color: var(--color-bg-brand-primary);
+}
+
+@utility bg-brand-secondary {
+    background-color: var(--color-bg-brand-secondary);
+}
+
+@utility bg-brand-solid {
+    background-color: var(--color-bg-brand-solid);
+}
+
+@utility bg-brand-solid_hover {
+    background-color: var(--color-bg-brand-solid_hover);
+}
+
+@utility bg-error-solid {
+    background-color: var(--color-bg-error-solid);
+}
+
+@utility bg-warning-solid {
+    background-color: var(--color-bg-warning-solid);
+}
+
+@utility bg-success-solid {
+    background-color: var(--color-bg-success-solid);
+}
+
+@utility bg-error-primary {
+    background-color: var(--color-bg-error-primary);
+}
+
+@utility bg-warning-primary {
+    background-color: var(--color-bg-warning-primary);
+}
+
+@utility bg-success-primary {
+    background-color: var(--color-bg-success-primary);
+}
 
 @custom-variant dark (&:where(.dark-mode, .dark-mode *));
 @custom-variant label (& [data-label]);
