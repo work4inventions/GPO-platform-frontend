@@ -350,14 +350,14 @@ export default function LayoutWrapper({
               <img className='cursor-pointer p-1.5 sm:p-2.5' src="/assets/dashboard/searchIcon.svg" alt="searchIcon" />
               <img className='cursor-pointer p-1.5 sm:p-2.5 h-8 w-8 sm:h-10 sm:w-10' src="/assets/dashboard/notificationIcon.svg" alt="notificationIcon" />
               <div className="rounded-[50%] bg-gray-300 flex items-center justify-center">
-                <img className='w-8 h-8 sm:w-10 sm:h-10 object-cover object-center rounded-[50%] cursor-pointer' src="/assets/dashboard/adminImg.jpg" alt="admin" />
+                <img className='w-8 h-8 sm:w-10 sm:h-10 otext-2xl sm:text-3xl font-bold text-gray-900bject-cover object-center rounded-[50%] cursor-pointer' src="/assets/dashboard/adminImg.jpg" alt="admin" />
               </div>
             </div>
           </div>
         </header>
 
         {/* Content Area */}
-        <main className="flex-1 pt-3 sm:pt-6 pb-8 sm:pb-12 px-4 sm:px-6 lg:px-8 overflow-y-auto">
+        <main className="flex-1 pt-5 pb-12 px-8 sm:px-6 lg:px-8 overflow-y-auto">
           {children}
         </main>
       </div>
