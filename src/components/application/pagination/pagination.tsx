@@ -18,7 +18,7 @@ const PaginationItem = ({ value, rounded, isCurrent }: { value: number; rounded?
             isCurrent={isCurrent}
             className={({ isSelected }) =>
                 cx(
-                    "flex size-10 cursor-pointer items-center justify-center p-3 text-sm font-medium text-quaternary outline-focus-ring transition duration-100 ease-linear hover:bg-primary_hover hover:text-secondary focus-visible:z-10 focus-visible:bg-primary_hover focus-visible:outline-2 focus-visible:outline-offset-2",
+                    "flex size-8 sm:size-10 cursor-pointer items-center justify-center p-2 sm:p-3 text-xs sm:text-sm font-medium text-quaternary outline-focus-ring transition duration-100 ease-linear hover:bg-primary_hover hover:text-secondary focus-visible:z-10 focus-visible:bg-primary_hover focus-visible:outline-2 focus-visible:outline-offset-2",
                     rounded ? "rounded-full" : "rounded-lg",
                     isSelected && "bg-primary_hover text-secondary",
                 )
@@ -42,16 +42,17 @@ interface MobilePaginationProps {
 
 const MobilePagination = ({ page = 1, total = 10, className, onPageChange }: MobilePaginationProps) => {
     return (
-        <nav aria-label="Pagination" className={cx("flex items-center justify-between md:hidden", className)}>
+        <nav aria-label="Pagination" className={cx("flex items-center justify-between lg:hidden", className)}>
             <Button
                 aria-label="Go to previous page"
                 iconLeading={ArrowLeft}
                 color="secondary"
                 size="sm"
-                onClick={() => onPageChange?.(Math.max(0, page - 1))}
+                className="px-2 sm:px-3"
+                onClick={() => onPageChange?.(Math.max(1, page - 1))}
             />
 
-            <span className="text-sm text-fg-secondary">
+            <span className="text-xs sm:text-sm text-fg-secondary px-2">
                 Page <span className="font-medium">{page}</span> of <span className="font-medium">{total}</span>
             </span>
 
@@ -60,6 +61,7 @@ const MobilePagination = ({ page = 1, total = 10, className, onPageChange }: Mob
                 iconLeading={ArrowRight}
                 color="secondary"
                 size="sm"
+                className="px-2 sm:px-3"
                 onClick={() => onPageChange?.(Math.min(total, page + 1))}
             />
         </nav>
@@ -67,25 +69,25 @@ const MobilePagination = ({ page = 1, total = 10, className, onPageChange }: Mob
 };
 
 export const PaginationPageDefault = ({ rounded, page = 1, total = 10, className, ...props }: PaginationProps) => {
-    const isDesktop = useBreakpoint("md");
+    const isDesktop = useBreakpoint("lg");
 
     return (
         <Pagination.Root
             {...props}
             page={page}
             total={total}
-            className={cx("flex w-full items-center justify-between gap-3 border-t border-secondary pt-4 md:pt-5", className)}
+            className={cx("flex w-full items-center justify-between gap-2 sm:gap-3 border-t border-secondary pt-3 sm:pt-4 lg:pt-5", className)}
         >
-            <div className="hidden flex-1 justify-start md:flex">
+            <div className="hidden flex-1 justify-start lg:flex">
                 <Pagination.PrevTrigger asChild>
-                    <Button iconLeading={ArrowLeft} color="link-gray" size="sm">
+                    <Button iconLeading={ArrowLeft} color="link-gray" size="sm" className="px-2 sm:px-3">
                         {isDesktop ? "Previous" : undefined}{" "}
                     </Button>
                 </Pagination.PrevTrigger>
             </div>
 
-            <Pagination.PrevTrigger asChild className="md:hidden">
-                <Button iconLeading={ArrowLeft} color="secondary" size="sm">
+            <Pagination.PrevTrigger asChild className="lg:hidden">
+                <Button iconLeading={ArrowLeft} color="secondary" size="sm" className="px-2 sm:px-3">
                     {isDesktop ? "Previous" : undefined}
                 </Button>
             </Pagination.PrevTrigger>
@@ -93,34 +95,34 @@ export const PaginationPageDefault = ({ rounded, page = 1, total = 10, className
             <Pagination.Context>
                 {({ pages, currentPage, total }) => (
                     <>
-                        <div className="hidden justify-center gap-0.5 md:flex">
+                        <div className="hidden justify-center gap-0.5 lg:flex">
                             {pages.map((page, index) =>
                                 page.type === "page" ? (
                                     <PaginationItem key={index} rounded={rounded} {...page} />
                                 ) : (
-                                    <Pagination.Ellipsis key={index} className="flex size-10 shrink-0 items-center justify-center text-tertiary">
+                                    <Pagination.Ellipsis key={index} className="flex size-8 sm:size-10 shrink-0 items-center justify-center text-tertiary">
                                         &#8230;
                                     </Pagination.Ellipsis>
                                 ),
                             )}
                         </div>
 
-                        <div className="flex justify-center text-sm whitespace-pre text-fg-secondary md:hidden">
+                        <div className="flex justify-center text-xs sm:text-sm whitespace-pre text-fg-secondary lg:hidden px-2">
                             Page <span className="font-medium">{currentPage}</span> of <span className="font-medium">{total}</span>
                         </div>
                     </>
                 )}
             </Pagination.Context>
 
-            <div className="hidden flex-1 justify-end md:flex">
+            <div className="hidden flex-1 justify-end lg:flex">
                 <Pagination.NextTrigger asChild>
-                    <Button iconTrailing={ArrowRight} color="link-gray" size="sm">
+                    <Button iconTrailing={ArrowRight} color="link-gray" size="sm" className="px-2 sm:px-3">
                         {isDesktop ? "Next" : undefined}
                     </Button>
                 </Pagination.NextTrigger>
             </div>
-            <Pagination.NextTrigger asChild className="md:hidden">
-                <Button iconTrailing={ArrowRight} color="secondary" size="sm">
+            <Pagination.NextTrigger asChild className="lg:hidden">
+                <Button iconTrailing={ArrowRight} color="secondary" size="sm" className="px-2 sm:px-3">
                     {isDesktop ? "Next" : undefined}
                 </Button>
             </Pagination.NextTrigger>

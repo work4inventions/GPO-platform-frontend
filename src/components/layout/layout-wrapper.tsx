@@ -130,7 +130,7 @@ export default function LayoutWrapper({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden"
+            className="fixed inset-0  bg-opacity-50 z-40 lg:hidden"
             onClick={() => setSidebarOpen(false)}
           />
         )}
@@ -327,37 +327,37 @@ export default function LayoutWrapper({
       {/* Main content */}
       <div className="flex-1 flex flex-col min-h-screen">
         {/* Header */}
-        <header className="bg-white px-8 max-sm:px-6 py-[13px] my-[5px] sticky top-0 z-30">
+        <header className="bg-white px-4 sm:px-6 lg:px-8 py-3 sm:py-[13px] my-[5px] sticky top-0 z-30">
           <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-2 sm:space-x-4">
+            <div className="flex items-center space-x-2 sm:space-x-4 min-w-0 flex-1">
               <button
                 onClick={() => setSidebarOpen(true)}
-                className="lg:hidden p-2 rounded-md text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer"
+                className="lg:hidden p-1.5 sm:p-2 rounded-md text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer flex-shrink-0"
                 aria-label="Open sidebar"
               >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
                 </svg>
               </button>
 
-              <div className="block">
-                <h2 className="text-lg font-semibold text-[#101828] leading-[1.223]">Welcome back, {userName}</h2>
-                <p className="text-sm text-gray-600 max-sm:hidden leading-[1.7145]">{subscriptionInfo}</p>
+              <div className="block min-w-0 flex-1">
+                <h2 className="text-base sm:text-lg font-semibold text-[#101828] leading-[1.223] truncate">Welcome back, {userName}</h2>
+                <p className="text-xs sm:text-sm text-gray-600 max-sm:hidden leading-[1.7145] truncate">{subscriptionInfo}</p>
               </div>
             </div>
 
-            <div className="flex items-center space-x-2 sm:space-x-4">
-              <img className='cursor-pointer mr-1 p-2.5' src="/assets/dashboard/searchIcon.svg" alt="searchIcon" />
-              <img className='cursor-pointer mr-1 p-2.5 h-10 w-10' src="/assets/dashboard/notificationIcon.svg" alt="notificationIcon" />
-              <div className=" rounded-[50%] bg-gray-300  flex items-center justify-center">
-                <img className='w-10 h-10 object-cover object-center rounded-[50%] cursor-pointer' src="/assets/dashboard/adminImg.jpg" alt="admin" />
+            <div className="flex items-center space-x-1 sm:space-x-2 lg:space-x-4 flex-shrink-0">
+              <img className='cursor-pointer p-1.5 sm:p-2.5' src="/assets/dashboard/searchIcon.svg" alt="searchIcon" />
+              <img className='cursor-pointer p-1.5 sm:p-2.5 h-8 w-8 sm:h-10 sm:w-10' src="/assets/dashboard/notificationIcon.svg" alt="notificationIcon" />
+              <div className="rounded-[50%] bg-gray-300 flex items-center justify-center">
+                <img className='w-8 h-8 sm:w-10 sm:h-10 object-cover object-center rounded-[50%] cursor-pointer' src="/assets/dashboard/adminImg.jpg" alt="admin" />
               </div>
             </div>
           </div>
         </header>
 
         {/* Content Area */}
-        <main className="flex-1 p-6 overflow-y-auto">
+        <main className="flex-1 pt-3 sm:pt-6 pb-8 sm:pb-12 px-4 sm:px-6 lg:px-8 overflow-y-auto">
           {children}
         </main>
       </div>
