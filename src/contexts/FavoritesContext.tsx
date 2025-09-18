@@ -1,8 +1,30 @@
-import React, { createContext, useContext, useState, useEffect } from 'react'
+import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react'
 
-const FavoritesContext = createContext()
+interface Vendor {
+  id: number
+  name: string
+  productType: string
+  description: string
+  icon?: string
+  hasDiscount?: boolean
+  discountPercent?: number
+}
 
-export const useFavorites = () => {
+interface FavoritesContextType {
+  favorites: Vendor[]
+  addToFavorites: (vendor: Vendor) => void
+  removeFromFavorites: (vendorId: number) => void
+  isFavorite: (vendorId: number) => boolean
+  toggleFavorite: (vendor: Vendor) => void
+}
+
+interface FavoritesProviderProps {
+  children: ReactNode
+}
+
+const FavoritesContext = createContext<FavoritesContextType | undefined>(undefined)
+
+export const useFavorites = (): FavoritesContextType => {
   const context = useContext(FavoritesContext)
   if (!context) {
     throw new Error('useFavorites must be used within a FavoritesProvider')
@@ -10,8 +32,8 @@ export const useFavorites = () => {
   return context
 }
 
-export const FavoritesProvider = ({ children }) => {
-  const [favorites, setFavorites] = useState([])
+export const FavoritesProvider: React.FC<FavoritesProviderProps> = ({ children }) => {
+  const [favorites, setFavorites] = useState<Vendor[]>([])
 
   // Load favorites from localStorage on mount
   useEffect(() => {
@@ -30,7 +52,7 @@ export const FavoritesProvider = ({ children }) => {
     localStorage.setItem('vendor-favorites', JSON.stringify(favorites))
   }, [favorites])
 
-  const addToFavorites = (vendor) => {
+  const addToFavorites = (vendor: Vendor) => {
     setFavorites(prev => {
       const exists = prev.find(fav => fav.id === vendor.id)
       if (!exists) {
@@ -40,15 +62,15 @@ export const FavoritesProvider = ({ children }) => {
     })
   }
 
-  const removeFromFavorites = (vendorId) => {
+  const removeFromFavorites = (vendorId: number) => {
     setFavorites(prev => prev.filter(fav => fav.id !== vendorId))
   }
 
-  const isFavorite = (vendorId) => {
+  const isFavorite = (vendorId: number) => {
     return favorites.some(fav => fav.id === vendorId)
   }
 
-  const toggleFavorite = (vendor) => {
+  const toggleFavorite = (vendor: Vendor) => {
     if (isFavorite(vendor.id)) {
       removeFromFavorites(vendor.id)
     } else {
@@ -56,7 +78,7 @@ export const FavoritesProvider = ({ children }) => {
     }
   }
 
-  const value = {
+  const value: FavoritesContextType = {
     favorites,
     addToFavorites,
     removeFromFavorites,
