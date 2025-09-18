@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useNavigate } from 'react-router'
 import { Button } from '@/components/base/buttons/button'
 import { PaginationPageDefault } from '@/components/application/pagination/pagination'
 
@@ -289,6 +290,7 @@ const favoriteVendors = [
 export default function DashboardContent({ activeTab: _ }: DashboardContentProps) {
   const [searchTerm, setSearchTerm] = useState('')
   const [currentPage, setCurrentPage] = useState(1)
+  const navigate = useNavigate()
 
   // Filter vendors based on search
   const filteredVendors = favoriteVendors.filter(vendor => {
@@ -313,6 +315,15 @@ export default function DashboardContent({ activeTab: _ }: DashboardContentProps
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page)
+  }
+
+  // Navigation handlers
+  const handleViewMoreEvents = () => {
+    navigate('/events')
+  }
+
+  const handleViewMoreDiscussions = () => {
+    navigate('/community')
   }
 
   // Empty state component
@@ -516,6 +527,7 @@ export default function DashboardContent({ activeTab: _ }: DashboardContentProps
             transition={{ delay: 1.1 }}
           >
             <motion.button 
+              onClick={handleViewMoreEvents}
               className="text-blue-600 hover:text-blue-700 text-sm font-medium cursor-pointer"
               whileHover={{ x: 5 }}
               whileTap={{ scale: 0.95 }}
@@ -572,9 +584,10 @@ export default function DashboardContent({ activeTab: _ }: DashboardContentProps
             transition={{ delay: 1.3 }}
           >
             <motion.button 
+              onClick={handleViewMoreDiscussions}
               className="text-blue-600 hover:text-blue-700 text-sm font-medium cursor-pointer"
               whileHover={{ x: 5 }}
-              whileTap={{ scale: 0.95 }}
+              whileTap={{ scale: 0.95 }}  
             >
               View More
             </motion.button>
@@ -592,7 +605,7 @@ export default function DashboardContent({ activeTab: _ }: DashboardContentProps
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
             <div className="min-w-0 flex-1">
               <motion.h3 
-                className="text-base sm:text-lg font-semibold text-gray-900"
+                className="text-base sm:text-lg font-semibold text-gray-900 mb-1"
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 1.6 }}
@@ -623,7 +636,7 @@ export default function DashboardContent({ activeTab: _ }: DashboardContentProps
                   placeholder="Search vendors..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="block w-full pl-10 pr-3 py-2 sm:py-2.5 border border-gray-300 rounded-lg text-xs sm:text-sm placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200"
+                  className="block w-full pl-10 px-6 py-2.5 sm:py-2.5 border border-gray-300 rounded-lg text-xs sm:text-sm placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200"
                   whileFocus={{ scale: 1.02 }}
                 />
                 <AnimatePresence>

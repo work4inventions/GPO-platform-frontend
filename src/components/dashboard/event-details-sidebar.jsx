@@ -1,9 +1,25 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { X, Calendar, MapPin, Bookmark } from 'lucide-react'
+import { X, Calendar, MapPin, Bookmark, ChevronDown, ChevronUp } from 'lucide-react'
 import { Button } from '@/components/base/buttons/button'
 
 const EventDetailsSidebar = ({ event, isOpen, onClose }) => {
+  const [isExpanded, setIsExpanded] = useState(false)
+  
+  // Prevent body scroll when sidebar is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'unset'
+    }
+    
+    // Cleanup on unmount
+    return () => {
+      document.body.style.overflow = 'unset'
+    }
+  }, [isOpen])
+  
   if (!event) return null
 
   const getTagColor = (tag) => {
@@ -40,10 +56,10 @@ const EventDetailsSidebar = ({ event, isOpen, onClose }) => {
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
             transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-            className="fixed right-0 top-0 h-full w-full max-w-md bg-white z-50 shadow-2xl overflow-y-auto"
+            className="fixed right-0 top-0 h-full w-full max-w-[400px] bg-white z-50 shadow-2xl flex flex-col"
           >
             {/* Header */}
-            <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between z-1">
+            <div className="sticky top-0 bg-white border-b border-gray-200 p-6 flex items-center justify-between z-1">
               <h2 className="text-xl font-bold text-gray-900 truncate pr-4">
                 {event.title}
               </h2>
@@ -56,7 +72,7 @@ const EventDetailsSidebar = ({ event, isOpen, onClose }) => {
             </div>
 
             {/* Content */}
-            <div className="px-6 py-6 space-y-6">
+            <div className="flex-1 overflow-y-auto px-6 py-6 space-y-6">
               {/* Event Image */}
               <div className="relative w-full h-48 rounded-lg overflow-hidden">
                 <img
@@ -80,14 +96,65 @@ const EventDetailsSidebar = ({ event, isOpen, onClose }) => {
               {/* About Section */}
               <div className="space-y-3">
                 <h4 className="text-lg font-semibold text-gray-900">About</h4>
-                <p className="text-gray-600 text-sm leading-relaxed">
-                  Enim feugiat ut ipsum, neque ut. Tristique mi id elementum praesent. 
-                  Gravida in tempus feugiat netus enim aliquet a, quam scelerisque. 
-                  Dictumst in convallis nec in bibendum aenean arcu.
-                </p>
-                <button className="text-blue-600 text-sm font-medium hover:text-blue-700">
-                  Show more
-                </button>
+                <div className="space-y-3">
+                  <p className="text-gray-600 text-sm leading-relaxed">
+                    Enim feugiat ut ipsum, neque ut. Tristique mi id elementum praesent. 
+                    Gravida in tempus feugiat netus enim aliquet a, quam scelerisque. 
+                    Dictumst in convallis nec in bibendum aenean arcu.
+                  </p>
+                  
+                  {/* Additional content that shows when expanded */}
+                  <AnimatePresence>
+                    {isExpanded && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: 'auto' }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.3, ease: 'easeInOut' }}
+                        className="space-y-3"
+                      >
+                        <p className="text-gray-600 text-sm leading-relaxed">
+                          This comprehensive event brings together industry leaders, practitioners, and innovators 
+                          in the field of digital dentistry. You'll have the opportunity to explore cutting-edge 
+                          technologies, attend hands-on workshops, and network with like-minded professionals.
+                        </p>
+                        <p className="text-gray-600 text-sm leading-relaxed">
+                          Key topics covered include digital impressions, CAD/CAM systems, 3D printing in dentistry, 
+                          digital workflow optimization, and the latest trends in patient care technology. 
+                          The event features keynote presentations, panel discussions, and interactive sessions 
+                          designed to enhance your practice and stay ahead of industry developments.
+                        </p>
+                        <div className="space-y-2">
+                          <h5 className="text-sm font-semibold text-gray-900">What you'll learn:</h5>
+                          <ul className="text-gray-600 text-sm space-y-1 ml-4">
+                            <li>• Advanced digital impression techniques</li>
+                            <li>• Integration of AI in dental practice</li>
+                            <li>• Cost-effective digital solutions</li>
+                            <li>• Patient communication strategies</li>
+                            <li>• Future trends in digital dentistry</li>
+                          </ul>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                  
+                  <button 
+                    onClick={() => setIsExpanded(!isExpanded)}
+                    className="flex items-center gap-1 text-blue-600 text-sm font-medium hover:text-blue-700 transition-colors cursor-pointer"
+                  >
+                    {isExpanded ? (
+                      <>
+                        Show less
+                        <ChevronUp className="w-4 h-4" />
+                      </>
+                    ) : (
+                      <>
+                        Show more
+                        <ChevronDown className="w-4 h-4" />
+                      </>
+                    )}
+                  </button>
+                </div>
               </div>
 
               {/* Tags */}
@@ -129,7 +196,7 @@ const EventDetailsSidebar = ({ event, isOpen, onClose }) => {
             </div>
 
             {/* Footer with Price and Book Button */}
-            <div className="sticky bottom-0 bg-white border-t border-gray-200 px-6 py-4">
+            <div className="flex-shrink-0 bg-white border-t border-gray-200 px-6 py-4">
               <div className="flex items-center justify-between">
                 <div className="space-y-1">
                   <div className="text-lg font-bold text-gray-900">
