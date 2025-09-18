@@ -19,11 +19,23 @@
         <script type="module" src="/src/main.jsx"></script>
         <script>
             // On page load or when changing themes, best to add inline in `head` to avoid FOUC
-            if (localStorage.theme === "dark" || (!("theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
-                document.documentElement.classList.add("dark-mode");
-            } else {
-                document.documentElement.classList.remove("dark-mode");
-            }
+            (function() {
+                try {
+                    const savedTheme = localStorage.getItem("ui-theme");
+                    if (savedTheme === "dark") {
+                        document.documentElement.classList.add("dark-mode");
+                    } else if (savedTheme === "light") {
+                        document.documentElement.classList.remove("dark-mode");
+                    } else if (savedTheme === "system" || !savedTheme) {
+                        // Default to light theme if no preference is saved or system theme is selected
+                        document.documentElement.classList.remove("dark-mode");
+                    }
+                } catch (error) {
+                    // If localStorage is not available (e.g., in incognito mode), default to light theme
+                    console.warn("localStorage not available, defaulting to light theme");
+                    document.documentElement.classList.remove("dark-mode");
+                }
+            })();
         </script>
     </body>
 </html>
