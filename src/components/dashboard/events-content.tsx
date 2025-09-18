@@ -372,8 +372,8 @@ export default function EventsContent({ activeTab: _ }: EventsContentProps) {
       className="space-y-6 "
     >
       {/* Header Section */}
-      <div className="space-y-4">
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+      <div className="mb-[23px]">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-[23px]">
           <h1 className="text-2xl font-bold text-gray-900">Events</h1>
           
           {/* Search Bar */}
@@ -467,7 +467,7 @@ export default function EventsContent({ activeTab: _ }: EventsContentProps) {
       {/* Events Grid/List */}
       <div className={
         viewMode === 'grid' 
-          ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+          ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
           : "space-y-4"
       }>
         {displayedEvents.map((event) => (
@@ -477,8 +477,7 @@ export default function EventsContent({ activeTab: _ }: EventsContentProps) {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.2 }}
             onClick={() => handleEventClick(event)}
-            className={`
-              bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden
+            className={`bg-white rounded-lg shadow-sm outline outline-gray-200 outline-offset-1 overflow-hidden
               hover:shadow-md transition-shadow duration-200 cursor-pointer
               ${viewMode === 'list' ? 'flex flex-col sm:flex-row' : ''}
             `}
@@ -486,7 +485,7 @@ export default function EventsContent({ activeTab: _ }: EventsContentProps) {
             {/* Event Image */}
             <div className={`
               relative
-              ${viewMode === 'list' ? 'w-full sm:w-64 h-auto sm:h-auto' : 'w-full h-[240px]'}
+              ${viewMode === 'list' ? 'w-full sm:w-64 h-auto sm:h-auto' : 'w-full aspect-[21_/_14.652]'}
             `}>
               <img
                 src={event.image}
@@ -511,11 +510,10 @@ export default function EventsContent({ activeTab: _ }: EventsContentProps) {
             </div>
 
             {/* Event Details */}
-            <div className={`
-              p-4 flex-1
+            <div className={` pt-4 px-6 pb-6 flex-1
               ${viewMode === 'list' ? 'flex flex-col justify-between' : ''}
             `}>
-              <div className="space-y-3">
+              <div className="">
                 {/* Date and Time */}
                 <div className="flex items-center gap-2 text-sm text-[#2980B9] mb-2">
                   <Calendar className="w-4 h-4" />
@@ -539,7 +537,7 @@ export default function EventsContent({ activeTab: _ }: EventsContentProps) {
                 </div>
                 
                 {/* Description */}
-                <p className="text-gray-600 text-sm line-clamp-2">
+                <p className="text-[#475467] text-base line-clamp-2 mb-3.5 mt-2">
                   {event.description}
                 </p>
                 
@@ -548,8 +546,7 @@ export default function EventsContent({ activeTab: _ }: EventsContentProps) {
                   {event.tags.map((tag, index) => (
                     <span
                       key={index}
-                      className={`
-                        px-3 py-1 rounded-full text-xs font-medium
+                      className={`px-2.5 py-[2px] rounded-full text-sm font-medium
                         ${getTagColor(tag)}
                       `}
                     >
