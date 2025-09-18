@@ -222,7 +222,7 @@
 
     &:where(a:focus-visible) {
         border-radius: var(--radius-sm);
-        outline: 2px solid var(--color-focus-ring);
+        outline: 2px solid #2980B9;
         outline-offset: 2px;
     }
     &:where(:is(h1, h2, h3) a) {

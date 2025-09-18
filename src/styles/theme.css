@@ -127,9 +127,9 @@
     --color-brand-200: rgb(233 215 254);
     --color-brand-300: rgb(214 187 251);
     --color-brand-400: rgb(182 146 246);
-    --color-brand-500: rgb(158 119 237);
-    --color-brand-600: rgb(127 86 217);
-    --color-brand-700: rgb(105 65 198);
+    --color-brand-500: rgb(41 128 185);
+    --color-brand-600: rgb(41 128 185);
+    --color-brand-700: rgb(41 128 185);
     --color-brand-800: rgb(83 56 158);
     --color-brand-900: rgb(66 48 125);
     --color-brand-950: rgb(44 28 95);
@@ -782,7 +782,7 @@
     --color-featured-icon-light-fg-success: var(--color-success-600);
     --color-featured-icon-light-fg-warning: var(--color-warning-600);
     --color-focus-ring-error: var(--color-error-500);
-    --color-focus-ring: var(--color-brand-500);
+    --color-focus-ring: var(--color-brand-600);
     --color-footer-button-fg: var(--color-brand-200);
     --color-footer-button-fg_hover: var(--color-white);
     --color-icon-fg-brand: var(--color-brand-600);
@@ -1206,7 +1206,7 @@
         --color-featured-icon-light-fg-success: var(--color-success-200);
         --color-featured-icon-light-fg-warning: var(--color-warning-200);
         --color-focus-ring-error: var(--color-error-500);
-        --color-focus-ring: var(--color-brand-500);
+        --color-focus-ring: var(--color-brand-600);
         --color-footer-button-fg: var(--color-gray-300);
         --color-footer-button-fg_hover: var(--color-gray-100);
         --color-icon-fg-brand: var(--color-gray-400);
