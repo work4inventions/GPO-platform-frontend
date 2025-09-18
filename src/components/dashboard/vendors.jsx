@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
+import { useNavigate } from 'react-router'
 import { Input } from '@/components/base/input/input'
 import { Select } from '@/components/base/select/select'
 
@@ -146,6 +147,7 @@ const vendorsData = [
 ]
 
 export default function Vendors() {
+  const navigate = useNavigate()
   const [searchTerm, setSearchTerm] = useState('')
   const [selectedCategory, setSelectedCategory] = useState('')
   const [selectedProduct, setSelectedProduct] = useState('')
@@ -177,8 +179,7 @@ export default function Vendors() {
   }
 
   const handleViewDetails = (vendorId) => {
-    console.log('View details for vendor:', vendorId)
-    // Add navigation logic here
+    navigate(`/vendor-details/${vendorId}`)
   }
 
   return (
