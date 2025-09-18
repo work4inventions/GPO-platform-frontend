@@ -40,11 +40,32 @@ interface ThemeProviderProps {
     storageKey?: string;
 }
 
-export const ThemeProvider = ({ children, defaultTheme = "system", storageKey = "ui-theme", darkModeClass = "dark-mode" }: ThemeProviderProps) => {
+export const ThemeProvider = ({ children, defaultTheme = "light", storageKey = "ui-theme", darkModeClass = "dark-mode" }: ThemeProviderProps) => {
     const [theme, setTheme] = useState<Theme>(() => {
         if (typeof window !== "undefined") {
-            const savedTheme = localStorage.getItem(storageKey) as Theme | null;
-            return savedTheme || defaultTheme;
+            // Apply theme immediately to prevent flash
+            const root = window.document.documentElement;
+            root.classList.remove(darkModeClass);
+            
+            try {
+                const savedTheme = localStorage.getItem(storageKey) as Theme | null;
+                const initialTheme = savedTheme || defaultTheme;
+                
+                // Apply the theme immediately
+                if (initialTheme === "system") {
+                    const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+                    root.classList.toggle(darkModeClass, systemTheme === "dark");
+                } else {
+                    root.classList.toggle(darkModeClass, initialTheme === "dark");
+                }
+                
+                return initialTheme;
+            } catch (error) {
+                // If localStorage is not available (e.g., in incognito mode), use default theme
+                console.warn("localStorage not available, using default theme:", defaultTheme);
+                root.classList.toggle(darkModeClass, defaultTheme === "dark");
+                return defaultTheme;
+            }
         }
         return defaultTheme;
     });
@@ -57,10 +78,18 @@ export const ThemeProvider = ({ children, defaultTheme = "system", storageKey = 
                 const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
 
                 root.classList.toggle(darkModeClass, systemTheme === "dark");
-                localStorage.removeItem(storageKey);
+                try {
+                    localStorage.removeItem(storageKey);
+                } catch (error) {
+                    console.warn("Could not remove from localStorage:", error);
+                }
             } else {
                 root.classList.toggle(darkModeClass, theme === "dark");
-                localStorage.setItem(storageKey, theme);
+                try {
+                    localStorage.setItem(storageKey, theme);
+                } catch (error) {
+                    console.warn("Could not save to localStorage:", error);
+                }
             }
         };
 

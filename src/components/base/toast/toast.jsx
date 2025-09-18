@@ -136,7 +136,7 @@ export const Toast = ({
           <button
             onClick={() => onClose(id)}
             className={`
-              inline-flex rounded-md p-1.5 ${colors.text} hover:bg-black hover:bg-opacity-5
+              inline-flex rounded-md p-1.5 ${colors.text} hover:bg-gray-100 hover:bg-opacity-50
               focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white
               transition-colors duration-200
             `}
