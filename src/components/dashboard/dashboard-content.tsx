@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useNavigate } from 'react-router'
-import { Button } from '@/components/base/buttons/button'
 import { PaginationPageDefault } from '@/components/application/pagination/pagination'
 
 interface DashboardContentProps {
