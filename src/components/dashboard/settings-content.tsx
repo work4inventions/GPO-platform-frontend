@@ -309,11 +309,6 @@ export default function SettingsContent({ activeTab: initialActiveTab }: Setting
       reader.readAsDataURL(file)
     }
   }
-
-
-
-
-
   // Handle drag and drop for profile image
   const handleProfileImageDrop = (e: React.DragEvent) => {
     e.preventDefault()

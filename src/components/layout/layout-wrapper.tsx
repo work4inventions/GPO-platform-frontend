@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useNavigate, useLocation } from 'react-router'
+import { useFavorites } from '@/contexts/FavoritesContext'
 
 // Icons
 const BarChartIcon = () => (
@@ -46,14 +47,19 @@ const LogoutIcon = () => (
   </svg>
 )
 
-const ChevronDownIcon = () => (
-  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+const ChevronDownIcon = ({ isOpen = false }) => (
+  <svg 
+    className={`w-5 h-5 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} 
+    fill="none" 
+    stroke="currentColor" 
+    viewBox="0 0 24 24"
+  >
     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
   </svg>
 )
 
-// Navigation items configuration
-const navigationItems = [
+// Navigation items configuration - will be updated with dynamic favorites count
+const getNavigationItems = (favoritesCount: number) => [
   { id: 'dashboard', label: 'Dashboard', icon: BarChartIcon, hasDropdown: false, route: '/dashboard' },
   { 
     id: 'marketplace', 
@@ -63,7 +69,7 @@ const navigationItems = [
     dropdownItems: [
       { id: 'vendors', label: 'Vendors', route: '/vendors' },
       { id: 'categories', label: 'Categories', route: '/categories' },
-      { id: 'favorites', label: 'Favorites', badge: '0', route: '/favorites' }
+      { id: 'favorites', label: 'Favorites', badge: favoritesCount.toString(), route: '/favorites' }
     ]
   },
   { id: 'community', label: 'Community', icon: PeopleIcon, hasDropdown: false, route: '/community' },
@@ -89,9 +95,23 @@ export default function LayoutWrapper({
   const [marketplaceDropdownOpen, setMarketplaceDropdownOpen] = useState(false)
   const navigate = useNavigate()
   const location = useLocation()
+  const { favorites } = useFavorites()
 
   // Get current active tab from URL path
   const currentActiveTab = activeTab || location.pathname.replace('/', '') || 'dashboard'
+  
+  // Check if we're on a marketplace subpage
+  const isMarketplaceSubpage = ['vendors', 'categories', 'favorites'].includes(currentActiveTab)
+  
+  // Keep marketplace dropdown open when on subpages
+  useEffect(() => {
+    if (isMarketplaceSubpage) {
+      setMarketplaceDropdownOpen(true)
+    }
+  }, [isMarketplaceSubpage])
+
+  // Get navigation items with dynamic favorites count
+  const navigationItems = getNavigationItems(favorites.length)
 
   // Handle keyboard navigation
   const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -168,7 +188,7 @@ export default function LayoutWrapper({
                   <span className='text-sm font-semibold leading-[1.715]'>{item.label}</span>
                 </div>
                 {item.hasDropdown && (
-                  <ChevronDownIcon />
+                  <ChevronDownIcon isOpen={marketplaceDropdownOpen} />
                 )}
               </button>
 
@@ -266,7 +286,7 @@ export default function LayoutWrapper({
                   <span>{item.label}</span>
                 </div>
                 {item.hasDropdown && (
-                  <ChevronDownIcon />
+                  <ChevronDownIcon isOpen={marketplaceDropdownOpen} />
                 )}
               </button>
 
