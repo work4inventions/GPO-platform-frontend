@@ -370,7 +370,7 @@ export default function LayoutWrapper({
               <img className='cursor-pointer p-1.5 sm:p-2.5' src="/assets/dashboard/searchIcon.svg" alt="searchIcon" />
               <img className='cursor-pointer p-1.5 sm:p-2.5 h-8 w-8 sm:h-10 sm:w-10' src="/assets/dashboard/notificationIcon.svg" alt="notificationIcon" />
               <div className="rounded-[50%] bg-gray-300 flex items-center justify-center">
-                <img className='w-8 h-8 sm:w-10 sm:h-10 otext-2xl sm:text-3xl font-bold text-gray-900bject-cover object-center rounded-[50%] cursor-pointer' src="/assets/dashboard/adminImg.jpg" alt="admin" />
+                <img className='w-8 h-8 sm:w-10 sm:h-10 otext-2xl sm:text-3xl font-bold text-gray-900bject-cover object-center rounded-[50%] cursor-pointer' src="/assets/dashboard/adminIcon.png" alt="admin" />
               </div>
             </div>
           </div>

@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { Button } from '@/components/base/buttons/button'
 import { Input } from '@/components/base/input/input'
-import { TextArea } from '@/components/base/textarea/textarea'
 
 interface SettingsContentProps {
   activeTab: string
@@ -121,39 +120,6 @@ const countries = [
   { value: 'om', label: 'Oman' },
 ]
 
-const timezones = [
-  { value: 'utc-12', label: 'Baker Island Time (BIT) UTC-12:00' },
-  { value: 'utc-11', label: 'Hawaii Standard Time (HST) UTC-11:00' },
-  { value: 'utc-10', label: 'Alaska Standard Time (AKST) UTC-10:00' },
-  { value: 'utc-9', label: 'Alaska Daylight Time (AKDT) UTC-09:00' },
-  { value: 'pst', label: 'Pacific Standard Time (PST) UTC-08:00' },
-  { value: 'pdt', label: 'Pacific Daylight Time (PDT) UTC-07:00' },
-  { value: 'mst', label: 'Mountain Standard Time (MST) UTC-07:00' },
-  { value: 'mdt', label: 'Mountain Daylight Time (MDT) UTC-06:00' },
-  { value: 'cst', label: 'Central Standard Time (CST) UTC-06:00' },
-  { value: 'cdt', label: 'Central Daylight Time (CDT) UTC-05:00' },
-  { value: 'est', label: 'Eastern Standard Time (EST) UTC-05:00' },
-  { value: 'edt', label: 'Eastern Daylight Time (EDT) UTC-04:00' },
-  { value: 'utc-3', label: 'Atlantic Standard Time (AST) UTC-03:00' },
-  { value: 'utc-2', label: 'Mid-Atlantic Time (MAT) UTC-02:00' },
-  { value: 'utc-1', label: 'Azores Time (AZOT) UTC-01:00' },
-  { value: 'gmt', label: 'Greenwich Mean Time (GMT) UTC+00:00' },
-  { value: 'cet', label: 'Central European Time (CET) UTC+01:00' },
-  { value: 'eet', label: 'Eastern European Time (EET) UTC+02:00' },
-  { value: 'msk', label: 'Moscow Time (MSK) UTC+03:00' },
-  { value: 'gst', label: 'Gulf Standard Time (GST) UTC+04:00' },
-  { value: 'pkt', label: 'Pakistan Standard Time (PKT) UTC+05:00' },
-  { value: 'ist', label: 'India Standard Time (IST) UTC+05:30' },
-  { value: 'bdt', label: 'Bangladesh Standard Time (BST) UTC+06:00' },
-  { value: 'ict', label: 'Indochina Time (ICT) UTC+07:00' },
-  { value: 'cst-china', label: 'China Standard Time (CST) UTC+08:00' },
-  { value: 'jst', label: 'Japan Standard Time (JST) UTC+09:00' },
-  { value: 'kst', label: 'Korea Standard Time (KST) UTC+09:00' },
-  { value: 'aest', label: 'Australian Eastern Standard Time (AEST) UTC+10:00' },
-  { value: 'aedt', label: 'Australian Eastern Daylight Time (AEDT) UTC+11:00' },
-  { value: 'nzst', label: 'New Zealand Standard Time (NZST) UTC+12:00' },
-  { value: 'nzdt', label: 'New Zealand Daylight Time (NZDT) UTC+13:00' },
-]
 
 const billingData = [
   { id: 1, date: 'Dec 1, 2024', amount: '$29.00', status: 'Paid', cycle: 'Monthly', invoice: 'INV-001' },
@@ -175,13 +141,13 @@ export default function SettingsContent({ activeTab: initialActiveTab }: Setting
   
   // Dropdown states
   const [selectedCountry, setSelectedCountry] = useState('au')
-  const [selectedTimezone, setSelectedTimezone] = useState('pst')
+  const [selectedPhoneCountry, setSelectedPhoneCountry] = useState('ad')
   const [isCountryOpen, setIsCountryOpen] = useState(false)
-  const [isTimezoneOpen, setIsTimezoneOpen] = useState(false)
+  const [isPhoneCountryOpen, setIsPhoneCountryOpen] = useState(false)
 
   // Refs for click outside detection
   const countryDropdownRef = useRef<HTMLDivElement>(null)
-  const timezoneDropdownRef = useRef<HTMLDivElement>(null)
+  const phoneCountryDropdownRef = useRef<HTMLDivElement>(null)
 
   // Debug logging
   console.log('Current activeTab:', activeTab)
@@ -194,19 +160,19 @@ export default function SettingsContent({ activeTab: initialActiveTab }: Setting
       if (countryDropdownRef.current && !countryDropdownRef.current.contains(target)) {
         setIsCountryOpen(false)
       }
-      if (timezoneDropdownRef.current && !timezoneDropdownRef.current.contains(target)) {
-        setIsTimezoneOpen(false)
+      if (phoneCountryDropdownRef.current && !phoneCountryDropdownRef.current.contains(target)) {
+        setIsPhoneCountryOpen(false)
       }
     }
 
     const handleEscapeKey = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
         setIsCountryOpen(false)
-        setIsTimezoneOpen(false)
+        setIsPhoneCountryOpen(false)
       }
     }
 
-    if (isCountryOpen || isTimezoneOpen) {
+    if (isCountryOpen || isPhoneCountryOpen) {
       document.addEventListener('mousedown', handleClickOutside)
       document.addEventListener('keydown', handleEscapeKey)
     }
@@ -215,7 +181,7 @@ export default function SettingsContent({ activeTab: initialActiveTab }: Setting
       document.removeEventListener('mousedown', handleClickOutside)
       document.removeEventListener('keydown', handleEscapeKey)
     }
-  }, [isCountryOpen, isTimezoneOpen])
+  }, [isCountryOpen, isPhoneCountryOpen])
 
   // Custom Dropdown Component
   const CustomDropdown = ({ 
@@ -363,12 +329,7 @@ export default function SettingsContent({ activeTab: initialActiveTab }: Setting
               defaultValue="Olivia"
               size="md"
             />
-            <Input
-              label="Last name *"
-              placeholder="Rhye"
-              defaultValue="Rhye"
-              size="md"
-            />
+            
           </div>
 
           {/* Email */}
@@ -439,96 +400,165 @@ export default function SettingsContent({ activeTab: initialActiveTab }: Setting
             </div>
           </div>
         </div>
-
-        {/* Role and Location */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 sm:gap-6">
-          <Input
-            label="Role"
-            placeholder="Product Designer"
-            defaultValue="Product Designer"
-            size="md"
-          />
-          
-          <div className="space-y-2">
-            <label className="text-sm font-medium text-black">Country</label>
-            <div ref={countryDropdownRef}>
-              <CustomDropdown
-                options={countries}
-                value={selectedCountry}
-                onChange={setSelectedCountry}
-                isOpen={isCountryOpen}
-                setIsOpen={setIsCountryOpen}
-                placeholder="Select country"
-              />
-            </div>
-          </div>
-        </div>
-
-        {/* Timezone */}
-        <div className="space-y-2">
-          <div className="flex items-center gap-2">
-            <label className="text-sm font-medium text-black">Timezone</label>
-            <QuestionMarkIcon />
-          </div>
-          <div ref={timezoneDropdownRef}>
-            <CustomDropdown
-              options={timezones}
-              value={selectedTimezone}
-              onChange={setSelectedTimezone}
-              isOpen={isTimezoneOpen}
-              setIsOpen={setIsTimezoneOpen}
-              placeholder="Select timezone"
-            />
-          </div>
-        </div>
-
-        {/* Bio */}
-        <div className="space-y-4">
-          <label className="text-sm font-medium text-black">Bio*</label>
-          <p className="text-sm text-tertiary">Write a short introduction.</p>
-          
-          <TextArea
-            placeholder="Write your bio here..."
-            defaultValue="I'm a Product Designer based in Melbourne, Australia. I specialise in UX/UI design, brand strategy, and Webflow development."
-            textAreaClassName="min-h-[120px] resize-none"
-          />
-
-          <p className="text-xs text-tertiary">964 characters left</p>
-        </div>
       </div>
 
       {/* Business Details Section */}
       <div className="space-y-6 pt-8 border-t border-gray-200">
-        <div>
-          <h3 className="text-lg font-semibold text-black">Business details</h3>
-          <p className="text-sm text-tertiary">Update your business information here.</p>
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div className="flex-1 min-w-0">
+            <h3 className="text-base sm:text-lg font-semibold text-black">Business Details</h3>
+            <p className="text-xs sm:text-sm text-tertiary">Update your business details here.</p>
+          </div>
+          <div className="flex flex-col xs:flex-row gap-2 xs:gap-3 w-full xs:w-auto">
+            <Button color="secondary" size="sm" className="w-full xs:w-auto">Cancel</Button>
+            <Button color="primary" size="sm" className='w-full xs:w-auto bg-[#2980B9] hover:bg-[#2980B9]/80'>Save</Button>
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 sm:gap-6">
-          <Input
-            label="Company name"
-            placeholder="Untitled UI"
-            defaultValue="Untitled UI"
-            size="md"
-          />
-          
-          <Input
-            label="Business email"
-            placeholder="business@untitledui.com"
-            defaultValue="business@untitledui.com"
-            size="md"
-          />
-        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+          {/* Left Column */}
+          <div className="space-y-4 sm:space-y-6">
+            {/* Business Name */}
+            <Input
+              label="Business Name *"
+              placeholder="Enter your Business name"
+              defaultValue=""
+              size="md"
+            />
+            
+            {/* Address */}
+            <Input
+              label="Address *"
+              placeholder="Enter your Address"
+              defaultValue=""
+              size="md"
+            />
+            
+            {/* Country */}
+            <div className="space-y-2">
+              <label className="text-sm font-medium text-black">Country *</label>
+              <div ref={countryDropdownRef} className="relative">
+                <CustomDropdown
+                  options={countries}
+                  value={selectedCountry}
+                  onChange={setSelectedCountry}
+                  isOpen={isCountryOpen}
+                  setIsOpen={setIsCountryOpen}
+                  placeholder="Select Country"
+                />
+              </div>
+            </div>
+          </div>
 
-
-        {/* Business Address */}
-        <div className="space-y-4">
-          <label className="text-sm font-medium text-black">Business address</label>
-          <TextArea
-            placeholder="Enter your business address..."
-            defaultValue="123 Business Street, Melbourne, VIC 3000, Australia"
-            textAreaClassName="min-h-[100px] resize-none"
-          />
+          {/* Right Column */}
+          <div className="space-y-4 sm:space-y-6">
+            {/* Role */}
+            <Input
+              label="Role *"
+              placeholder="Enter your Role"
+              defaultValue=""
+              size="md"
+            />
+            
+            {/* City */}
+            <Input
+              label="City *"
+              placeholder="Enter your City"
+              defaultValue=""
+              size="md"
+            />
+            
+            {/* Phone */}
+            <div className="space-y-2">
+              <label className="text-sm font-medium text-black">Phone</label>
+              <div className="flex gap-2">
+                {/* Country Code Dropdown */}
+                <div className="w-24 flex-shrink-0" ref={phoneCountryDropdownRef}>
+                  <CustomDropdown
+                    options={[
+                      { value: 'ad', label: 'A. +376' },
+                      { value: 'us', label: 'A. +1' },
+                      { value: 'au', label: 'A. +61' },
+                      { value: 'ca', label: 'A. +1' },
+                      { value: 'uk', label: 'A. +44' },
+                      { value: 'de', label: 'A. +49' },
+                      { value: 'fr', label: 'A. +33' },
+                      { value: 'jp', label: 'A. +81' },
+                      { value: 'in', label: 'A. +91' },
+                      { value: 'br', label: 'A. +55' },
+                      { value: 'mx', label: 'A. +52' },
+                      { value: 'it', label: 'A. +39' },
+                      { value: 'es', label: 'A. +34' },
+                      { value: 'nl', label: 'A. +31' },
+                      { value: 'se', label: 'A. +46' },
+                      { value: 'no', label: 'A. +47' },
+                      { value: 'dk', label: 'A. +45' },
+                      { value: 'fi', label: 'A. +358' },
+                      { value: 'ch', label: 'A. +41' },
+                      { value: 'at', label: 'A. +43' },
+                      { value: 'be', label: 'A. +32' },
+                      { value: 'ie', label: 'A. +353' },
+                      { value: 'nz', label: 'A. +64' },
+                      { value: 'sg', label: 'A. +65' },
+                      { value: 'hk', label: 'A. +852' },
+                      { value: 'kr', label: 'A. +82' },
+                      { value: 'cn', label: 'A. +86' },
+                      { value: 'th', label: 'A. +66' },
+                      { value: 'my', label: 'A. +60' },
+                      { value: 'ph', label: 'A. +63' },
+                      { value: 'id', label: 'A. +62' },
+                      { value: 'vn', label: 'A. +84' },
+                      { value: 'za', label: 'A. +27' },
+                      { value: 'eg', label: 'A. +20' },
+                      { value: 'ng', label: 'A. +234' },
+                      { value: 'ke', label: 'A. +254' },
+                      { value: 'ma', label: 'A. +212' },
+                      { value: 'ar', label: 'A. +54' },
+                      { value: 'cl', label: 'A. +56' },
+                      { value: 'co', label: 'A. +57' },
+                      { value: 'pe', label: 'A. +51' },
+                      { value: 've', label: 'A. +58' },
+                      { value: 'ru', label: 'A. +7' },
+                      { value: 'pl', label: 'A. +48' },
+                      { value: 'cz', label: 'A. +420' },
+                      { value: 'hu', label: 'A. +36' },
+                      { value: 'ro', label: 'A. +40' },
+                      { value: 'bg', label: 'A. +359' },
+                      { value: 'hr', label: 'A. +385' },
+                      { value: 'si', label: 'A. +386' },
+                      { value: 'sk', label: 'A. +421' },
+                      { value: 'lt', label: 'A. +370' },
+                      { value: 'lv', label: 'A. +371' },
+                      { value: 'ee', label: 'A. +372' },
+                      { value: 'gr', label: 'A. +30' },
+                      { value: 'pt', label: 'A. +351' },
+                      { value: 'tr', label: 'A. +90' },
+                      { value: 'il', label: 'A. +972' },
+                      { value: 'ae', label: 'A. +971' },
+                      { value: 'sa', label: 'A. +966' },
+                      { value: 'qa', label: 'A. +974' },
+                      { value: 'kw', label: 'A. +965' },
+                      { value: 'bh', label: 'A. +973' },
+                      { value: 'om', label: 'A. +968' }
+                    ]}
+                    value={selectedPhoneCountry}
+                    onChange={setSelectedPhoneCountry}
+                    isOpen={isPhoneCountryOpen}
+                    setIsOpen={setIsPhoneCountryOpen}
+                    placeholder="A. +376"
+                  />
+                </div>
+                {/* Phone Number Input */}
+                <div className="flex-1">
+                  <Input
+                    placeholder="Enter phone number"
+                    defaultValue=""
+                    size="md"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -553,7 +553,7 @@ function LoginPage() {
                 <div className='w-2/4 h-full max-lg:hidden'>
                     {/* Right side - Testimonial */}
                     <div className=" relative w-full h-full ">
-
+                                
                         {/* Overlay */}
                         <div className='max-w-full w-full max-lg:hidden h-full'>
                             <div className='h-full w-full relative'>
