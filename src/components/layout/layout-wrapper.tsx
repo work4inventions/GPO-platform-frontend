@@ -16,9 +16,9 @@ const StackedBoxesIcon = () => (
   </svg>
 )
 
-const CommunityIcon = () => (
+const PeopleIcon = () => (
   <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z" />
   </svg>
 )
 
@@ -28,6 +28,11 @@ const CalendarIcon = () => (
   </svg>
 )
 
+const GlobeIcon = () => (
+  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0-9v9" />
+  </svg>
+)
 
 const SettingsIcon = () => (
   <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -67,8 +72,9 @@ const getNavigationItems = (favoritesCount: number) => [
       { id: 'favorites', label: 'Favorites', badge: favoritesCount.toString(), route: '/favorites' }
     ]
   },
-  { id: 'community', label: 'Community', icon: CommunityIcon, hasDropdown: false, route: '/community' },
+  { id: 'community', label: 'Community', icon: PeopleIcon, hasDropdown: false, route: '/community' },
   { id: 'events', label: 'Events', icon: CalendarIcon, hasDropdown: false, route: '/events' },
+  { id: 'profile', label: 'Profile', icon: GlobeIcon, hasDropdown: false, route: '/profile' },
   { id: 'settings', label: 'Settings', icon: SettingsIcon, hasDropdown: false, route: '/settings' },
 ]
 
@@ -161,7 +167,7 @@ export default function LayoutWrapper({
             <div key={item.id}>
               <button
                 className={`
-                  w-full flex items-center justify-between px-3 py-2 text-sm font-medium rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-primary)] cursor-pointer
+                  w-full flex items-center justify-between px-3 py-2 text-sm font-medium rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-[#2980B9] cursor-pointer
                   ${currentActiveTab === item.id || (item.hasDropdown && currentActiveTab.startsWith('marketplace'))
                     ? 'bg-blue-100 text-blue-700'
                     : 'text-gray-700 hover:bg-gray-200'
@@ -199,10 +205,10 @@ export default function LayoutWrapper({
                     <button
                       key={dropdownItem.id}
                       className={`
-                        flex justify-between w-full text-left px-3 py-2 text-base rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-primary)] cursor-pointer
+                        flex justify-between w-full text-left px-3 py-2 text-base rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2980B9] cursor-pointer
                         ${currentActiveTab === dropdownItem.id
                           ? 'bg-blue-50 text-blue-700'
-                          : 'text-[var(--color-text-secondary)] hover:bg-gray-200'
+                          : 'text-[#344054] hover:bg-gray-200'
                         }
                       `}
                       onClick={() => handleDropdownItemClick(dropdownItem.id, dropdownItem.route)}
@@ -210,7 +216,7 @@ export default function LayoutWrapper({
                     >
                       {dropdownItem.label}
                       {dropdownItem.badge && (
-                        <span className='text-[12px] py-[2px] px-2 text-[var(--color-text-secondary)] bg-[var(--color-bg-light)] rounded-[16px]'>
+                        <span className='text-[12px] py-[2px] px-2 text-[#344054] bg-[#F2F4F7] rounded-[16px]'>
                           {dropdownItem.badge}
                         </span>
                       )}
@@ -244,7 +250,7 @@ export default function LayoutWrapper({
           <h1 className="text-lg sm:text-xl font-semibold text-gray-900">4M INSTITUTE</h1>
           <button
             onClick={() => setSidebarOpen(false)}
-            className="lg:hidden p-2 rounded-md text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-primary)] cursor-pointer"
+            className="lg:hidden p-2 rounded-md text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-[#2980B9] cursor-pointer"
             aria-label="Close sidebar"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -258,7 +264,7 @@ export default function LayoutWrapper({
             <div key={item.id}>
               <button
                 className={`
-                  w-full flex items-center justify-between px-3 py-2 text-sm font-medium rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-primary)] cursor-pointer
+                  w-full flex items-center justify-between px-3 py-2 text-sm font-medium rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-[#2980B9] cursor-pointer
                   ${currentActiveTab === item.id || (item.hasDropdown && currentActiveTab.startsWith('marketplace'))
                     ? 'bg-blue-100 text-blue-700'
                     : 'text-gray-700 hover:bg-gray-200'
@@ -297,7 +303,7 @@ export default function LayoutWrapper({
                     <button
                       key={dropdownItem.id}
                       className={`
-                        flex justify-between w-full text-left px-3 py-2 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-primary)] cursor-pointer
+                        flex justify-between w-full text-left px-3 py-2 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2980B9] cursor-pointer
                         ${currentActiveTab === dropdownItem.id
                           ? 'bg-blue-50 text-blue-700'
                           : 'text-gray-600 hover:bg-gray-200'
@@ -311,7 +317,7 @@ export default function LayoutWrapper({
                     >
                       {dropdownItem.label}
                       {dropdownItem.badge && (
-                        <span className='text-[12px] py-[2px] px-2 text-[var(--color-text-secondary)] bg-[var(--color-bg-light)] rounded-[16px]'>
+                        <span className='text-[12px] py-[2px] px-2 text-[#344054] bg-[#F2F4F7] rounded-[16px]'>
                           {dropdownItem.badge}
                         </span>
                       )}
@@ -346,7 +352,7 @@ export default function LayoutWrapper({
             <div className="flex items-center space-x-2 sm:space-x-4 min-w-0 flex-1">
               <button
                 onClick={() => setSidebarOpen(true)}
-                className="lg:hidden p-1.5 sm:p-2 rounded-md text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-primary)] cursor-pointer flex-shrink-0"
+                className="lg:hidden p-1.5 sm:p-2 rounded-md text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-[#2980B9] cursor-pointer flex-shrink-0"
                 aria-label="Open sidebar"
               >
                 <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -355,7 +361,7 @@ export default function LayoutWrapper({
               </button>
 
               <div className="block min-w-0 flex-1">
-                <h2 className="text-base sm:text-lg font-semibold text-[var(--color-text-primary)] leading-[1.223] truncate">Welcome back, {userName}</h2>
+                <h2 className="text-base sm:text-lg font-semibold text-[#101828] leading-[1.223] truncate">Welcome back, {userName}</h2>
                 <p className="text-xs sm:text-sm text-gray-600 max-sm:hidden leading-[1.7145] truncate">{subscriptionInfo}</p>
               </div>
             </div>
@@ -364,7 +370,7 @@ export default function LayoutWrapper({
               <img className='cursor-pointer p-1.5 sm:p-2.5' src="/assets/dashboard/searchIcon.svg" alt="searchIcon" />
               <img className='cursor-pointer p-1.5 sm:p-2.5 h-8 w-8 sm:h-10 sm:w-10' src="/assets/dashboard/notificationIcon.svg" alt="notificationIcon" />
               <div className="rounded-[50%] bg-gray-300 flex items-center justify-center">
-                <img className='w-8 h-8 sm:w-10 sm:h-10 otext-2xl sm:text-3xl font-bold text-gray-900bject-cover object-center rounded-[50%] cursor-pointer' src="/assets/dashboard/adminImg.jpg" alt="admin" />
+                <img className='w-8 h-8 sm:w-10 sm:h-10 otext-2xl sm:text-3xl font-bold text-gray-900bject-cover object-center rounded-[50%] cursor-pointer' src="/assets/dashboard/adminIcon.png" alt="admin" />
               </div>
             </div>
           </div>

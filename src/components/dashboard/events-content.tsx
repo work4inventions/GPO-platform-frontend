@@ -515,7 +515,7 @@ export default function EventsContent({ activeTab: _ }: EventsContentProps) {
             `}>
               <div className="">
                 {/* Date and Time */}
-                <div className="flex items-center gap-2 text-sm text-[var(--color-brand-primary)] mb-2">
+                <div className="flex items-center gap-2 text-sm text-[#2980B9] mb-2">
                   <Calendar className="w-4 h-4" />
                   <span>{event.date} - {event.time}</span>
                 </div>
@@ -537,7 +537,7 @@ export default function EventsContent({ activeTab: _ }: EventsContentProps) {
                 </div>
                 
                 {/* Description */}
-                <p className="text-[var(--color-text-tertiary)] text-base line-clamp-2 mb-3.5 mt-2">
+                <p className="text-[#475467] text-base line-clamp-2 mb-3.5 mt-2">
                   {event.description}
                 </p>
                 

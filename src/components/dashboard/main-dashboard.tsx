@@ -4,6 +4,7 @@ import DashboardContent from './dashboard-content'
 import MarketplaceContent from './marketplace-content'
 import CommunityContent from './community-content'
 import EventsContent from './events-content'
+import ProfileContent from './profile-content'
 import SettingsContent from './settings-content'
 
 // Tab content mapping
@@ -15,6 +16,7 @@ const tabContentMap = {
   favorites: MarketplaceContent,
   community: CommunityContent,
   events: EventsContent,
+  profile: ProfileContent,
   settings: SettingsContent,
 }
 
