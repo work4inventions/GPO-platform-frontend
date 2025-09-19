@@ -146,7 +146,7 @@ export default function DashboardLayout({
             <div key={item.id}>
               <button
                 className={`
-                  w-full flex items-center justify-between px-3 py-2 text-sm font-medium rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer
+                  w-full flex items-center justify-between px-3 py-2 text-sm font-medium rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-[#2980B9] cursor-pointer
                   ${activeTab === item.id || (item.hasDropdown && activeTab.startsWith(item.id))
                     ? 'bg-blue-100 text-blue-700'
                     : 'text-gray-700 hover:bg-gray-200'
@@ -184,7 +184,7 @@ export default function DashboardLayout({
                     <button
                       key={dropdownItem.id}
                       className={`
-                        flex justify-between w-full text-left px-3 py-2 text-base rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer
+                        flex justify-between w-full text-left px-3 py-2 text-base rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2980B9] cursor-pointer
                         ${activeTab === dropdownItem.id
                           ? 'bg-blue-50 text-blue-700'
                           : 'text-[#344054] hover:bg-gray-200'
@@ -218,7 +218,7 @@ export default function DashboardLayout({
           <h1 className="text-lg sm:text-xl font-semibold text-gray-900">4M INSTITUTE</h1>
           <button
             onClick={() => setSidebarOpen(false)}
-            className="lg:hidden p-2 rounded-md text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer"
+            className="lg:hidden p-2 rounded-md text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-[#2980B9] cursor-pointer"
             aria-label="Close sidebar"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -232,7 +232,7 @@ export default function DashboardLayout({
             <div key={item.id}>
               <button
                 className={`
-                  w-full flex items-center justify-between px-3 py-2 text-sm font-medium rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer
+                  w-full flex items-center justify-between px-3 py-2 text-sm font-medium rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-[#2980B9] cursor-pointer
                   ${activeTab === item.id || (item.hasDropdown && activeTab.startsWith(item.id))
                     ? 'bg-blue-100 text-blue-700'
                     : 'text-gray-700 hover:bg-gray-200'
@@ -271,7 +271,7 @@ export default function DashboardLayout({
                     <button
                       key={dropdownItem.id}
                       className={`
-                        flex justify-between w-full text-left px-3 py-2 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer
+                        flex justify-between w-full text-left px-3 py-2 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2980B9] cursor-pointer
                         ${activeTab === dropdownItem.id
                           ? 'bg-blue-50 text-blue-700'
                           : 'text-gray-600 hover:bg-gray-200'
@@ -306,7 +306,7 @@ export default function DashboardLayout({
             <div className="flex items-center space-x-2 sm:space-x-4 min-w-0 flex-1">
               <button
                 onClick={() => setSidebarOpen(true)}
-                className="lg:hidden p-1.5 sm:p-2 rounded-md text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer flex-shrink-0"
+                className="lg:hidden p-1.5 sm:p-2 rounded-md text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-[#2980B9] cursor-pointer flex-shrink-0"
                 aria-label="Open sidebar"
               >
                 <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">

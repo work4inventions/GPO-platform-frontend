@@ -436,283 +436,289 @@ function LoginPage() {
 
     return (
         <>
-            <div className='login'>
-                <div className="pt-[35px] ps-[37px] max-[1401px]:ps-3 max-[1401px]:pt-3">
-                    <img
-                        className="h-12 w-auto max-[767px]:w-[197px] max-[767px]:object-contain"
-                        src="/assets/loginPage/componyLogo.png"
-                        alt="Company Logo"
-                    />
-                </div>
-                <div className="relative min-h-screen bg-white flex w-full mx-auto" >
-                    {/* Left side - Login Form */}
-                    <div className='main-welcome-back flex items-center w-full gap-[180px] justify-center max-[1024px]:flex-col max-[1024px]:gap-[30px] max-[1024px]:pt-[30px] max-[1501px]:justify-end'>
-                        <div className="justify-center relative ps-3 max-[1024px]:px-3 max-[768px]:w-full">
-                            <div className="mx-auto w-[360px] max-[768px]:w-full">
-                                {/* Logo */}
+            <div className=' flex h-screen relative overflow-hidden'>
+
+                <div className='w-2/4 flex flex-col max-lg:w-full '>
+                    {/* header logo */}
+                    <div className="pt-[35px] ps-[37px] max-[1401px]:ps-3 max-[1401px]:pt-3">
+                        <img
+                            className="h-12 w-auto max-[767px]:w-[197px] max-[767px]:object-contain"
+                            src="/assets/loginPage/componyLogo.png"
+                            alt="Company Logo"
+                        />
+                    </div>
+
+                    {/* form container */}
+                    <div className=" relative ps-3 max-[1024px]:px-3 max-[768px]:w-full m-auto">
+                        <div className="m-auto w-[360px] max-[768px]:w-full">
+                            {/* Logo */}
 
 
-                                {/* Form Header */}
-                                <div className="mb-8 max-[767px]:mb-4">
-                                    <h2 className="text-3xl text-[#101828] leading-[1.267] font-semibold max-[767px]:leading-[1.3]">Welcome back</h2>
-                                    <p className="mt-3 text-base text-[#475467] font-normal leading-[1.5] max-[767px]:m-0">
-                                        Welcome back! Please enter your details.
-                                    </p>
+                            {/* Form Header */}
+                            <div className="mb-8 max-[767px]:mb-4">
+                                <h2 className="text-3xl text-[#101828] leading-[1.267] font-semibold max-[767px]:leading-[1.3]">Welcome back</h2>
+                                <p className="mt-3 text-base text-[#475467] font-normal leading-[1.5] max-[767px]:m-0">
+                                    Welcome back! Please enter your details.
+                                </p>
+                            </div>
+
+                            {/* Login Form */}
+                            <form className="" onSubmit={handleSubmit}>
+                                {/* Email Input */}
+                                <div className='mb-5'>
+                                    <p className='leading-[1.429] text-sm font-medium text-[#344054] mb-1.5'>Email</p>
+                                    <Input
+                                        type="email"
+                                        placeholder="Enter your email"
+                                        value={email}
+                                        onChange={handleEmailChange}
+                                        isRequired
+                                        size="md"
+                                        isInvalid={!!emailError}
+                                        hint={emailError}
+                                    />
                                 </div>
 
-                                {/* Login Form */}
-                                <form className="" onSubmit={handleSubmit}>
-                                    {/* Email Input */}
-                                    <div className='mb-5'>
-                                        <p className='leading-[1.429] text-sm font-medium text-[#344054] mb-1.5'>Email</p>
-                                        <Input
-                                            type="email"
-                                            placeholder="Enter your email"
-                                            value={email}
-                                            onChange={handleEmailChange}
-                                            isRequired
-                                            size="md"
-                                            isInvalid={!!emailError}
-                                            hint={emailError}
-                                        />
+                                {/* Password Input */}
+                                <div className='mb-6'>
+                                    <p className='leading-[1.429] text-sm font-medium text-[#344054] mb-1.5'>Password</p>
+                                    <Input
+                                        type="password"
+                                        placeholder="Enter your password"
+                                        value={password}
+                                        onChange={handlePasswordChange}
+                                        isRequired
+                                        size="md"
+                                        isInvalid={!!passwordError}
+                                        hint={passwordError}
+                                    />
+                                </div>
+
+                                {/* Error Message */}
+                                {error && (
+                                    <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg">
+                                        <p className="text-red-600 text-sm">{error}</p>
                                     </div>
+                                )}
 
-                                    {/* Password Input */}
-                                    <div className='mb-6'>
-                                        <p className='leading-[1.429] text-sm font-medium text-[#344054] mb-1.5'>Password</p>
-                                        <Input
-                                            type="password"
-                                            placeholder="Enter your password"
-                                            value={password}
-                                            onChange={handlePasswordChange}
-                                            isRequired
-                                            size="md"
-                                            isInvalid={!!passwordError}
-                                            hint={passwordError}
-                                        />
-                                    </div>
+                                {/* Remember me and Forgot password */}
+                                <div className="flex items-center justify-between">
+                                    <Checkbox
+                                        isSelected={rememberMe}
+                                        onChange={setRememberMe}
+                                        label="Remember me"
+                                        size="sm"
+                                        className='leading-[1.429] text-sm text-black'
+                                    />
+                                    <Button
+                                        color="link-gray"
+                                        size="sm"
+                                        onClick={() => navigate('/forgot-password')}
+                                        className="text-sm text-[#425D7E] "
+                                    >
+                                        Forgot password?
+                                    </Button>
+                                </div>
 
-                                    {/* Error Message */}
-                                    {error && (
-                                        <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg">
-                                            <p className="text-red-600 text-sm">{error}</p>
-                                        </div>
-                                    )}
+                                {/* Sign In Button */}
+                                <div className='mb-8 mt-6 max-[767px]:mb-3'>
+                                    <Button
+                                        type="submit"
+                                        disabled={isLoading}
+                                        className="w-full bg-[#2980B9] text-base leading-[1.5] text-white font-medium py-2.5 px-4 rounded-lg transition-all duration-50 ease-in-out transform hover:bg-[#1f5f8b] hover:scale-[1.02] hover:shadow-lg active:scale-[0.98] active:bg-[#1a4d73] focus:outline-none focus:ring-2 focus:ring-[#2980B9] focus:ring-opacity-50 disabled:opacity-50 disabled:cursor-not-allowed"
+                                    >
+                                        {isLoading ? 'Signing in...' : 'Sign in'}
+                                    </Button>
+                                </div>
 
-                                    {/* Remember me and Forgot password */}
-                                    <div className="flex items-center justify-between">
-                                        <Checkbox
-                                            isSelected={rememberMe}
-                                            onChange={setRememberMe}
-                                            label="Remember me"
-                                            size="sm"
-                                            className='leading-[1.429] text-sm text-black'
-                                        />
+                                {/* Footer Text */}
+                                <div className="text-center">
+                                    <p className="text-sm text-[#475467] font-normal leading-[1.429]">
+                                        Don't have an account?{' '}
                                         <Button
-                                            color="link-gray"
+                                            color="link-color"
                                             size="sm"
-                                            onClick={() => navigate('/forgot-password')}
-                                            className="text-sm text-[#425D7E] "
+                                            onClick={() => navigate('/signup')}
+                                            className="text-sm text-[#2980B9]"
                                         >
-                                            Forgot password?
+                                            Sign up
                                         </Button>
-                                    </div>
-
-                                    {/* Sign In Button */}
-                                    <div className='mb-8 mt-6 max-[767px]:mb-3'>
-                                        <Button
-                                            type="submit"
-                                            disabled={isLoading}
-                                            className="w-full bg-[#2980B9] text-base leading-[1.5] text-white font-medium py-2.5 px-4 rounded-lg transition-all duration-50 ease-in-out transform hover:bg-[#1f5f8b] hover:scale-[1.02] hover:shadow-lg active:scale-[0.98] active:bg-[#1a4d73] focus:outline-none focus:ring-2 focus:ring-[#2980B9] focus:ring-opacity-50 disabled:opacity-50 disabled:cursor-not-allowed"
-                                        >
-                                            {isLoading ? 'Signing in...' : 'Sign in'}
-                                        </Button>
-                                    </div>
-
-                                    {/* Footer Text */}
-                                    <div className="text-center">
-                                        <p className="text-sm text-[#475467] font-normal leading-[1.429]">
-                                            Don't have an account?{' '}
-                                            <Button
-                                                color="link-color"
-                                                size="sm"
-                                                onClick={() => navigate('/signup')}
-                                                className="text-sm text-[#2980B9]"
-                                            >
-                                                Sign up
-                                            </Button>
-                                        </p>
-                                    </div>
-                                </form>
-                            </div>
+                                    </p>
+                                </div>
+                            </form>
                         </div>
+                    </div>
 
-                        {/* Right side - Testimonial */}
-                        <div className=" relative max-w-[720px] w-full mt-[-151px] max-[1024px]:mt-0">
+                </div>
+                <div className='w-2/4 h-full max-lg:hidden'>
+                    {/* Right side - Testimonial */}
+                    <div className=" relative w-full h-full ">
 
-                            {/* Overlay */}
-                            <div className='max-w-full w-full'>
-                                <img src="/assets/loginPage/loginImg.svg" alt="loginImg" />
-                                {/* Testimonial Card */}
-                                <div className="absolute inset-0 top-auto w-full z-10 flex flex-col justify-center items-center px-[40px] pb-[40px] max-[1100px]:px-3 max-[1100px]:pb-3">
-                                    <div className="max-w-full px-[24px] py-[32px] text-center backdrop-blur-xl max-[1024px]:px-3 max-[1024px]:py-3">
-                                        <AnimatePresence mode="popLayout" custom={direction}>
+                        {/* Overlay */}
+                        <div className='max-w-full w-full max-lg:hidden h-full'>
+                            <div className='h-full w-full relative'>
+                            <img src="/assets/loginPage/loginImg.svg" alt="loginImg" className='absolute top-0 left-0 w-full h-full block object-cover' />
+                            </div>
+                            {/* Testimonial Card */}
+                            <div className="absolute inset-0 top-auto w-full z-10 flex flex-col justify-center items-center px-[40px] pb-[40px] max-[1100px]:px-3 max-[1100px]:pb-3">
+                                <div className="max-w-full px-[24px] py-[32px] text-center backdrop-blur-xl max-[1024px]:px-3 max-[1024px]:py-3">
+                                    <AnimatePresence mode="popLayout" custom={direction}>
+                                        <motion.div
+                                            key={currentTestimonial}
+                                            custom={direction}
+                                            variants={slideVariants}
+                                            initial="enter"
+                                            animate="center"
+                                            exit="exit"
+                                            transition={slideTransition}
+                                            className="w-full"
+                                        >
                                             <motion.div
-                                                key={currentTestimonial}
-                                                custom={direction}
-                                                variants={slideVariants}
-                                                initial="enter"
-                                                animate="center"
-                                                exit="exit"
-                                                transition={slideTransition}
+                                                variants={contentVariants}
+                                                initial="hidden"
+                                                animate="visible"
                                                 className="w-full"
                                             >
-                                                <motion.div
-                                                    variants={contentVariants}
-                                                    initial="hidden"
-                                                    animate="visible"
-                                                    className="w-full"
+                                                {/* Quote */}
+                                                <motion.blockquote
+                                                    className="text-white text-3xl text-left leading-[1.5834] font-medium mb-8 max-[1100px]:text-[20px] max-[1100px]:text-center max-[420px]:text-[16px]"
+                                                    variants={quoteVariants}
                                                 >
-                                                    {/* Quote */}
-                                                    <motion.blockquote
-                                                        className="text-white text-3xl text-left leading-[1.5834] font-medium mb-8 max-[1100px]:text-[20px] max-[1100px]:text-center max-[420px]:text-[16px]"
-                                                        variants={quoteVariants}
-                                                    >
-                                                        "{currentTestimonialData.quote}"
-                                                    </motion.blockquote>
+                                                    "{currentTestimonialData.quote}"
+                                                </motion.blockquote>
 
-                                                    {/* Author Info */}
+                                                {/* Author Info */}
+                                                <motion.div
+                                                    className="mb-4 flex justify-between h-[44px] max-[767px]:mb-[4px] max-[414px]:mb-0"
+                                                    variants={itemVariants}
+                                                >
+                                                    <motion.p
+                                                        className="text-white font-semibold text-4xl max-[1100px]:text-[24px] max-[1024px]:text-[20px]"
+                                                        variants={authorVariants}
+                                                    >
+                                                        {currentTestimonialData.author}
+                                                    </motion.p>
+                                                    {/* Rating Stars */}
                                                     <motion.div
-                                                        className="mb-4 flex justify-between h-[44px] max-[767px]:mb-[4px] max-[414px]:mb-0"
+                                                        className="flex justify-center mb-8"
+                                                        variants={ratingVariants}
+                                                    >
+                                                        <RatingStars rating={currentTestimonialData.rating} stars={5} />
+                                                    </motion.div>
+                                                </motion.div>
+
+                                                <motion.div
+                                                    className='flex justify-between max-[767px]:items-center max-[414px]:flex-col max-[414px]:gap-3'
+                                                    variants={itemVariants}
+                                                >
+                                                    <motion.p
+                                                        className="text-gray-200 text-lg max-[767px]:text-[16px] max-[767px]:text-left"
                                                         variants={itemVariants}
                                                     >
-                                                        <motion.p
-                                                            className="text-white font-semibold text-4xl max-[1100px]:text-[24px] max-[1024px]:text-[20px]"
-                                                            variants={authorVariants}
+                                                        {currentTestimonialData.role}
+                                                    </motion.p>
+                                                    {/* Navigation Buttons */}
+                                                    <div className="flex justify-center gap-8 max-[1024px]:gap-3 ">
+                                                        <motion.button
+                                                            onClick={goToPrevious}
+                                                            className="cursor-pointer p-[21px] rounded-[28px] bg-transparent border border-white h-14 w-14 flex items-center justify-center backdrop-blur-sm"
+                                                            aria-label="Previous testimonial"
+                                                            variants={buttonVariants}
+                                                            initial="rest"
+                                                            whileHover="hover"
+                                                            whileTap="tap"
+                                                            style={{
+                                                                backdropFilter: 'blur(10px)',
+                                                                WebkitBackdropFilter: 'blur(10px)',
+                                                            }}
                                                         >
-                                                            {currentTestimonialData.author}
-                                                        </motion.p>
-                                                        {/* Rating Stars */}
+                                                            <motion.img
+                                                                className='w-[24px]'
+                                                                src="/assets/loginPage/leftArrow.svg"
+                                                                alt="leftArrow"
+                                                                variants={buttonIconVariants}
+                                                                initial="rest"
+                                                                whileHover="hover"
+                                                                whileTap="tap"
+                                                            />
+                                                        </motion.button>
+                                                        <motion.button
+                                                            onClick={goToNext}
+                                                            className="cursor-pointer p-[21px] rounded-full bg-transparent border border-white h-14 w-14 flex items-center justify-center backdrop-blur-sm"
+                                                            aria-label="Next testimonial"
+                                                            variants={buttonVariants}
+                                                            initial="rest"
+                                                            whileHover="hover"
+                                                            whileTap="tap"
+                                                            style={{
+                                                                backdropFilter: 'blur(10px)',
+                                                                WebkitBackdropFilter: 'blur(10px)',
+                                                            }}
+                                                        >
+                                                            <motion.img
+                                                                src="/assets/loginPage/rightArrow.svg"
+                                                                alt="rightArrow"
+                                                                variants={buttonIconVariants}
+                                                                initial="rest"
+                                                                whileHover="hover"
+                                                                whileTap="tap"
+                                                            />
+                                                        </motion.button>
+                                                    </div>
+                                                </motion.div>
+
+                                                {/* Slide Indicators with Progress */}
+                                                <motion.div
+                                                    className="flex justify-center gap-2 mt-6"
+                                                    variants={itemVariants}
+                                                >
+                                                    {testimonials.map((_, index) => (
                                                         <motion.div
-                                                            className="flex justify-center mb-8"
-                                                            variants={ratingVariants}
+                                                            key={index}
+                                                            className="relative h-1 bg-white/20 rounded-full overflow-hidden"
+                                                            style={{ width: '40px' }}
+                                                            whileHover={{ scale: 1.1 }}
+                                                            transition={{ type: "spring", stiffness: 400, damping: 25 }}
                                                         >
-                                                            <RatingStars rating={currentTestimonialData.rating} stars={5} />
-                                                        </motion.div>
-                                                    </motion.div>
-
-                                                    <motion.div
-                                                        className='flex justify-between max-[767px]:items-center max-[414px]:flex-col max-[414px]:gap-3'
-                                                        variants={itemVariants}
-                                                    >
-                                                        <motion.p
-                                                            className="text-gray-200 text-lg max-[767px]:text-[16px] max-[767px]:text-left"
-                                                            variants={itemVariants}
-                                                        >
-                                                            {currentTestimonialData.role}
-                                                        </motion.p>
-                                                        {/* Navigation Buttons */}
-                                                        <div className="flex justify-center gap-8 max-[1024px]:gap-3 ">
-                                                            <motion.button
-                                                                onClick={goToPrevious}
-                                                                className="cursor-pointer p-[21px] rounded-[28px] bg-transparent border border-white h-14 w-14 flex items-center justify-center backdrop-blur-sm"
-                                                                aria-label="Previous testimonial"
-                                                                variants={buttonVariants}
-                                                                initial="rest"
-                                                                whileHover="hover"
-                                                                whileTap="tap"
-                                                                style={{
-                                                                    backdropFilter: 'blur(10px)',
-                                                                    WebkitBackdropFilter: 'blur(10px)',
-                                                                }}
-                                                            >
-                                                                <motion.img
-                                                                    className='w-[24px]'
-                                                                    src="/assets/loginPage/leftArrow.svg"
-                                                                    alt="leftArrow"
-                                                                    variants={buttonIconVariants}
-                                                                    initial="rest"
-                                                                    whileHover="hover"
-                                                                    whileTap="tap"
-                                                                />
-                                                            </motion.button>
-                                                            <motion.button
-                                                                onClick={goToNext}
-                                                                className="cursor-pointer p-[21px] rounded-full bg-transparent border border-white h-14 w-14 flex items-center justify-center backdrop-blur-sm"
-                                                                aria-label="Next testimonial"
-                                                                variants={buttonVariants}
-                                                                initial="rest"
-                                                                whileHover="hover"
-                                                                whileTap="tap"
-                                                                style={{
-                                                                    backdropFilter: 'blur(10px)',
-                                                                    WebkitBackdropFilter: 'blur(10px)',
-                                                                }}
-                                                            >
-                                                                <motion.img
-                                                                    src="/assets/loginPage/rightArrow.svg"
-                                                                    alt="rightArrow"
-                                                                    variants={buttonIconVariants}
-                                                                    initial="rest"
-                                                                    whileHover="hover"
-                                                                    whileTap="tap"
-                                                                />
-                                                            </motion.button>
-                                                        </div>
-                                                    </motion.div>
-
-                                                    {/* Slide Indicators with Progress */}
-                                                    <motion.div
-                                                        className="flex justify-center gap-2 mt-6"
-                                                        variants={itemVariants}
-                                                    >
-                                                        {testimonials.map((_, index) => (
                                                             <motion.div
-                                                                key={index}
-                                                                className="relative h-1 bg-white/20 rounded-full overflow-hidden"
-                                                                style={{ width: '40px' }}
-                                                                whileHover={{ scale: 1.1 }}
-                                                                transition={{ type: "spring", stiffness: 400, damping: 25 }}
-                                                            >
+                                                                className="absolute top-0 left-0 h-full bg-white rounded-full"
+                                                                initial={{ width: 0 }}
+                                                                animate={{
+                                                                    width: index === currentTestimonial ? `${progress}%` : 0
+                                                                }}
+                                                                transition={{
+                                                                    duration: 0.1,
+                                                                    ease: "linear"
+                                                                }}
+                                                            />
+                                                            {index === currentTestimonial && (
                                                                 <motion.div
-                                                                    className="absolute top-0 left-0 h-full bg-white rounded-full"
+                                                                    className="absolute top-0 left-0 h-full bg-gradient-to-r from-white/60 to-white rounded-full"
                                                                     initial={{ width: 0 }}
-                                                                    animate={{
-                                                                        width: index === currentTestimonial ? `${progress}%` : 0
-                                                                    }}
+                                                                    animate={{ width: `${progress}%` }}
                                                                     transition={{
                                                                         duration: 0.1,
                                                                         ease: "linear"
                                                                     }}
+                                                                    style={{
+                                                                        background: 'linear-gradient(90deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,1) 100%)',
+                                                                        boxShadow: '0 0 8px rgba(255,255,255,0.5)'
+                                                                    }}
                                                                 />
-                                                                {index === currentTestimonial && (
-                                                                    <motion.div
-                                                                        className="absolute top-0 left-0 h-full bg-gradient-to-r from-white/60 to-white rounded-full"
-                                                                        initial={{ width: 0 }}
-                                                                        animate={{ width: `${progress}%` }}
-                                                                        transition={{
-                                                                            duration: 0.1,
-                                                                            ease: "linear"
-                                                                        }}
-                                                                        style={{
-                                                                            background: 'linear-gradient(90deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,1) 100%)',
-                                                                            boxShadow: '0 0 8px rgba(255,255,255,0.5)'
-                                                                        }}
-                                                                    />
-                                                                )}
-                                                            </motion.div>
-                                                        ))}
-                                                    </motion.div>
+                                                            )}
+                                                        </motion.div>
+                                                    ))}
                                                 </motion.div>
                                             </motion.div>
-                                        </AnimatePresence>
+                                        </motion.div>
+                                    </AnimatePresence>
 
-                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                {/* main container */}
             </div>
 
 

@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useNavigate } from 'react-router'
-import { Button } from '@/components/base/buttons/button'
 import { PaginationPageDefault } from '@/components/application/pagination/pagination'
 
 interface DashboardContentProps {
@@ -513,9 +512,9 @@ export default function DashboardContent({ activeTab: _ }: DashboardContentProps
                   whileTap={{ scale: 0.95 }}
                   className="flex-shrink-0 ml-2"
                 >
-                  <Button size="sm" color="primary" className='py-1 sm:py-1.5 px-2 sm:px-3 text-xs'>
-                    Join
-                  </Button>
+                  <button  color="primary" className='py-1.5 px-3 text-sm bg-[#2980B9] rounded-[8px] cursor-pointer text-white'>
+                    Join Event
+                  </button>
                 </motion.div>
               </div>
             ))}
@@ -528,7 +527,7 @@ export default function DashboardContent({ activeTab: _ }: DashboardContentProps
           >
             <motion.button 
               onClick={handleViewMoreEvents}
-              className="text-blue-600 hover:text-blue-700 text-sm font-medium cursor-pointer"
+              className="text-[#2980B9] text-sm font-medium cursor-pointer"
               whileHover={{ x: 5 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -570,9 +569,9 @@ export default function DashboardContent({ activeTab: _ }: DashboardContentProps
                   whileTap={{ scale: 0.95 }}
                   className="flex-shrink-0 ml-2"
                 >
-                  <Button size="sm" color="primary" className="text-xs px-2 sm:px-3">
-                    Chat
-                  </Button>
+                    <button  color="primary" className='py-1.5 px-3 text-sm bg-[#2980B9] rounded-[8px] cursor-pointer text-white'>
+                   Go to Chat
+                  </button>
                 </motion.div>
               </div>
             ))}
@@ -585,7 +584,7 @@ export default function DashboardContent({ activeTab: _ }: DashboardContentProps
           >
             <motion.button 
               onClick={handleViewMoreDiscussions}
-              className="text-blue-600 hover:text-blue-700 text-sm font-medium cursor-pointer"
+              className="text-[#2980B9]  text-sm font-medium cursor-pointer"
               whileHover={{ x: 5 }}
               whileTap={{ scale: 0.95 }}  
             >
@@ -636,7 +635,7 @@ export default function DashboardContent({ activeTab: _ }: DashboardContentProps
                   placeholder="Search vendors..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="block w-full pl-10 px-6 py-2.5 sm:py-2.5 border border-gray-300 rounded-lg text-xs sm:text-sm placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200"
+                  className="block w-full pl-10 px-6 py-2.5 sm:py-2.5 border border-gray-300 rounded-lg text-xs sm:text-sm placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#2980B9] focus:border-transparent transition-colors duration-200"
                   whileFocus={{ scale: 1.02 }}
                 />
                 <AnimatePresence>
