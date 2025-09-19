@@ -425,7 +425,7 @@ export default function DashboardContent({ activeTab: _ }: DashboardContentProps
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
         >
-        <button className='cursor-pointer flex items-center justify-center space-x-1 sm:space-x-2 text-[#344054] px-2 sm:px-4 py-2 sm:py-2.5 rounded-[8px] outline outline-offset-1 outline-[#D0D5DD] shadow-[0px_1px_2px_0px_#1018280D]'>
+        <button className='cursor-pointer flex items-center justify-center space-x-1 sm:space-x-2 text-[var(--color-text-secondary)] px-2 sm:px-4 py-2 sm:py-2.5 rounded-[8px] outline outline-offset-1 outline-[var(--color-border-medium)] shadow-[0px_1px_2px_0px_var(--color-shadow)]'>
           <img src="/assets/dashboard/exportIcon.svg" alt="exportIcon" className="w-4 h-4" />
           <span className='text-xs sm:text-sm font-semibold hidden xs:inline'>Export</span>
           
@@ -456,7 +456,7 @@ export default function DashboardContent({ activeTab: _ }: DashboardContentProps
           
               <div className="flex items-center justify-between mb-2">
                 <motion.p 
-                  className="text-xs sm:text-sm text-[#475467] truncate flex-1"
+                  className="text-xs sm:text-sm text-[var(--color-text-tertiary)] truncate flex-1"
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3 + index * 0.1 }}
@@ -483,7 +483,7 @@ export default function DashboardContent({ activeTab: _ }: DashboardContentProps
       >
         {/* Upcoming Events */}
         <motion.div 
-          className="bg-white outline outline-[#EAECF0] outline-offset-1 rounded-lg p-4 sm:p-6 shadow-[0px_1px_2px_0px_#1018280D]"
+          className="bg-white outline outline-[var(--color-border-light)] outline-offset-1 rounded-lg p-4 sm:p-6 shadow-[0px_1px_2px_0px_var(--color-shadow)]"
           variants={itemVariants}
           whileHover={{ y: -2 }}
           transition={{ duration: 0.2 }}  
@@ -499,11 +499,11 @@ export default function DashboardContent({ activeTab: _ }: DashboardContentProps
           </motion.div>
             <div className="space-y-3 sm:space-y-4">
             {upcomingEvents.map((event, index) => (
-              <div key={index} className='flex items-center justify-between pt-3 sm:pt-4 pb-3 sm:pb-[15px] pr-2 rounded-lg hover:bg-gray-100 transition-colors duration-200 border-b border-[#EAECF0]' >
+              <div key={index} className='flex items-center justify-between pt-3 sm:pt-4 pb-3 sm:pb-[15px] pr-2 rounded-lg hover:bg-gray-100 transition-colors duration-200 border-b border-[var(--color-border-light)]' >
                 <div className="flex items-center space-x-2 sm:space-x-3 min-w-0 flex-1">
                  <img src="/assets/dashboard/workshopIcon.svg" alt="workshopIcon" className='h-6 w-6 sm:h-8 sm:w-8 flex-shrink-0' />
                   <div className="min-w-0 flex-1">
-                    <p className="font-medium text-[#101828] text-xs sm:text-sm truncate">{event.title}</p>
+                    <p className="font-medium text-[var(--color-text-primary)] text-xs sm:text-sm truncate">{event.title}</p>
                     <p className="text-xs sm:text-sm text-gray-600 truncate">{event.date}</p>
                   </div>
                 </div>
@@ -512,7 +512,7 @@ export default function DashboardContent({ activeTab: _ }: DashboardContentProps
                   whileTap={{ scale: 0.95 }}
                   className="flex-shrink-0 ml-2"
                 >
-                  <button  color="primary" className='py-1.5 px-3 text-sm bg-[#2980B9] rounded-[8px] cursor-pointer text-white'>
+                  <button  color="primary" className='py-1.5 px-3 text-sm bg-[var(--color-brand-primary)] rounded-[8px] cursor-pointer text-white'>
                     Join Event
                   </button>
                 </motion.div>
@@ -527,7 +527,7 @@ export default function DashboardContent({ activeTab: _ }: DashboardContentProps
           >
             <motion.button 
               onClick={handleViewMoreEvents}
-              className="text-[#2980B9] text-sm font-medium cursor-pointer"
+              className="text-[var(--color-brand-primary)] text-sm font-medium cursor-pointer"
               whileHover={{ x: 5 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -538,7 +538,7 @@ export default function DashboardContent({ activeTab: _ }: DashboardContentProps
 
         {/* Latest Discussions */}
         <motion.div 
-          className="bg-white outline outline-[#EAECF0] outline-offset-1 rounded-lg p-4 sm:p-6 shadow-[0px_1px_2px_0px_#1018280F]"
+          className="bg-white outline outline-[var(--color-border-light)] outline-offset-1 rounded-lg p-4 sm:p-6 shadow-[0px_1px_2px_0px_#1018280F]"
           variants={itemVariants}
           whileHover={{ y: -2 }}
           transition={{ duration: 0.2 }}
@@ -554,7 +554,7 @@ export default function DashboardContent({ activeTab: _ }: DashboardContentProps
           </motion.div>
           <div className="space-y-3 sm:space-y-4">
             {latestDiscussions.map((discussion, index) => (
-              <div key={index} className='flex items-center justify-between pt-4 pb-[15px] rounded-lg hover:bg-gray-100 transition-colors duration-200 border-b border-[#EAECF0]' >
+              <div key={index} className='flex items-center justify-between pt-4 pb-[15px] rounded-lg hover:bg-gray-100 transition-colors duration-200 border-b border-[var(--color-border-light)]' >
                 <div className="flex items-center space-x-2 sm:space-x-3 min-w-0 flex-1">
                   <img src="/assets/dashboard/chatIcon.svg" alt="chatIcon" className='h-6 w-6 sm:h-8 sm:w-8 flex-shrink-0' />
                   <div className="min-w-0 flex-1">
@@ -569,7 +569,7 @@ export default function DashboardContent({ activeTab: _ }: DashboardContentProps
                   whileTap={{ scale: 0.95 }}
                   className="flex-shrink-0 ml-2"
                 >
-                    <button  color="primary" className='py-1.5 px-3 text-sm bg-[#2980B9] rounded-[8px] cursor-pointer text-white'>
+                    <button  color="primary" className='py-1.5 px-3 text-sm bg-[var(--color-brand-primary)] rounded-[8px] cursor-pointer text-white'>
                    Go to Chat
                   </button>
                 </motion.div>
@@ -584,7 +584,7 @@ export default function DashboardContent({ activeTab: _ }: DashboardContentProps
           >
             <motion.button 
               onClick={handleViewMoreDiscussions}
-              className="text-[#2980B9]  text-sm font-medium cursor-pointer"
+              className="text-[var(--color-brand-primary)]  text-sm font-medium cursor-pointer"
               whileHover={{ x: 5 }}
               whileTap={{ scale: 0.95 }}  
             >
@@ -635,7 +635,7 @@ export default function DashboardContent({ activeTab: _ }: DashboardContentProps
                   placeholder="Search vendors..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="block w-full pl-10 px-6 py-2.5 sm:py-2.5 border border-gray-300 rounded-lg text-xs sm:text-sm placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#2980B9] focus:border-transparent transition-colors duration-200"
+                  className="block w-full pl-10 px-6 py-2.5 sm:py-2.5 border border-gray-300 rounded-lg text-xs sm:text-sm placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-primary)] focus:border-transparent transition-colors duration-200"
                   whileFocus={{ scale: 1.02 }}
                 />
                 <AnimatePresence>

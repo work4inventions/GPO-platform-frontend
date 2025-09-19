@@ -95,7 +95,7 @@ export const SignupStepFinish = ({ data, onPrevious }) => {
           size="md"
           className="flex-1"
           onClick={handleFinish}
-          style={{ backgroundColor: '#2980B9' }}
+          style={{ backgroundColor: 'var(--color-brand-primary)' }}
         >
           Get Started
         </Button>

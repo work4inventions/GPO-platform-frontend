@@ -63,8 +63,8 @@ export const SignupAccount = ({ data, onDataUpdate, onNext }) => {
     <div className="space-y-6 w-[390px] max-md:px-5 max-md:w-full">
       {/* Header */}
       <div className=" mb-8">
-        <h1 className="text-3xl max-sm:text-2xl font-semibold text-[#000D22] mb-3 leading-[1.267]">Sign up</h1>
-        <p className="text-sm sm:text-base text-[#2C3F56] font-normal">
+        <h1 className="text-3xl max-sm:text-2xl font-semibold text-[var(--color-text-primary)] mb-3 leading-[1.267]">Sign up</h1>
+        <p className="text-sm sm:text-base text-[var(--color-text-secondary)] font-normal">
           Create your account by entering your details below.
         </p>
       </div>
@@ -107,14 +107,14 @@ export const SignupAccount = ({ data, onDataUpdate, onNext }) => {
           size="md"
           className="w-full py-2.5 text-base leading-[1.5] font-semibold mb-8"
           onClick={handleNext}
-          style={{ backgroundColor: '#2980B9' }}
+          style={{ backgroundColor: 'var(--color-brand-primary)' }}
         >
           Continue
         </Button>
 
         <div className="text-center">
-          <span className="text-[#2A3D56] ">Already have an account? </span>
-          <button className="text-[#2980B9] hover:underline font-semibold text-sm">
+          <span className="text-[var(--color-text-secondary)] ">Already have an account? </span>
+          <button className="text-[var(--color-brand-primary)] hover:underline font-semibold text-sm">
             Log in
           </button>
         </div>

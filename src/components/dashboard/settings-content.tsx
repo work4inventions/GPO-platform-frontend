@@ -245,7 +245,7 @@ export default function SettingsContent({ activeTab: initialActiveTab }: Setting
             e.stopPropagation()
             setIsOpen(!isOpen)
           }}
-          className="w-full px-3 py-2.5 border border-gray-300 rounded-lg text-sm text-left bg-white focus:outline-none focus:ring-2 focus:ring-[#2980B9] focus:border-[#2980B9] transition-colors duration-200 hover:border-gray-400 flex items-center justify-between cursor-pointer"
+          className="w-full px-3 py-2.5 border border-gray-300 rounded-lg text-sm text-left bg-white focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-primary)] focus:border-[var(--color-brand-primary)] transition-colors duration-200 hover:border-gray-400 flex items-center justify-between cursor-pointer"
         >
           <span className={selectedOption ? 'text-black' : 'text-gray-500'}>
             {selectedOption ? selectedOption.label : placeholder}
@@ -269,7 +269,7 @@ export default function SettingsContent({ activeTab: initialActiveTab }: Setting
                 }}
                 className={`w-full px-3 py-2 sm:py-2.5 text-left text-xs sm:text-sm transition-colors duration-150 first:rounded-t-lg last:rounded-b-lg cursor-pointer ${
                   option.value === value 
-                    ? 'bg-[#2980B9] text-white hover:bg-[#2980B9]/90' 
+                    ? 'bg-[var(--color-brand-primary)] text-white hover:bg-[var(--color-brand-primary)]/90' 
                     : 'text-black hover:bg-gray-50'
                 }`}
               >
@@ -350,7 +350,7 @@ export default function SettingsContent({ activeTab: initialActiveTab }: Setting
           </div>
           <div className="flex flex-col xs:flex-row gap-2 xs:gap-3 w-full xs:w-auto">
             <Button color="secondary" size="sm" className="w-full xs:w-auto">Cancel</Button>
-            <Button color="primary" size="sm" className='w-full xs:w-auto bg-[#2980B9] hover:bg-[#2980B9]/80'>Save</Button>
+            <Button color="primary" size="sm" className='w-full xs:w-auto bg-[var(--color-brand-primary)] hover:bg-[var(--color-brand-primary)]/80'>Save</Button>
           </div>
         </div>
 
@@ -603,7 +603,7 @@ export default function SettingsContent({ activeTab: initialActiveTab }: Setting
         {/* Action Buttons */}
         <div className="flex flex-col xs:flex-row gap-2 xs:gap-3 pt-4">
           <Button color="secondary" size="md" className="w-full xs:w-auto">Cancel</Button>
-          <Button color="primary" size="md" className='w-full xs:w-auto bg-[#2980B9] hover:bg-[#2980B9]/80'>Update password</Button>
+          <Button color="primary" size="md" className='w-full xs:w-auto bg-[var(--color-brand-primary)] hover:bg-[var(--color-brand-primary)]/80'>Update password</Button>
         </div>
       </div>
     </div>
@@ -621,14 +621,14 @@ export default function SettingsContent({ activeTab: initialActiveTab }: Setting
         {/* Beautiful Subscription Plan Card */}
         <div className="relative bg-gradient-to-br from-white to-gray-50 border border-gray-200 rounded-xl sm:rounded-2xl p-4 sm:p-6 lg:p-8 shadow-lg hover:shadow-xl transition-all duration-300">
           {/* Decorative Elements */}
-          <div className="absolute bottom-0 left-0 w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 bg-gradient-to-tr from-[#2980B9]/5 to-transparent rounded-full translate-y-6 sm:translate-y-8 lg:translate-y-12 -translate-x-6 sm:-translate-x-8 lg:-translate-x-12"></div>
+          <div className="absolute bottom-0 left-0 w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 bg-gradient-to-tr from-[var(--color-brand-primary)]/5 to-transparent rounded-full translate-y-6 sm:translate-y-8 lg:translate-y-12 -translate-x-6 sm:-translate-x-8 lg:-translate-x-12"></div>
           
           <div className="relative z-10">
             {/* Header Section */}
             <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-4 sm:mb-6">
               <div className="space-y-2 flex-1 min-w-0">
                 <div className="flex items-center gap-2 sm:gap-3">
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-[#2980B9] to-[#1e5a8a] rounded-lg sm:rounded-xl flex items-center justify-center flex-shrink-0">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-[var(--color-brand-primary)] to-[var(--color-brand-primary-gradient)] rounded-lg sm:rounded-xl flex items-center justify-center flex-shrink-0">
                     <svg className="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                     </svg>
@@ -704,7 +704,7 @@ export default function SettingsContent({ activeTab: initialActiveTab }: Setting
               <Button 
                 color="primary" 
                 size="sm" 
-                className="bg-gradient-to-r from-[#2980B9] to-[#1e5a8a] hover:from-[#1e5a8a] hover:to-[#2980B9] shadow-lg hover:shadow-xl transition-all duration-300 w-full sm:w-auto"
+                className="bg-gradient-to-r from-[var(--color-brand-primary)] to-[var(--color-brand-primary-gradient)] hover:from-[var(--color-brand-primary-gradient)] hover:to-[var(--color-brand-primary)] shadow-lg hover:shadow-xl transition-all duration-300 w-full sm:w-auto"
               >
                 <svg className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
@@ -751,7 +751,7 @@ export default function SettingsContent({ activeTab: initialActiveTab }: Setting
                 <span>{item.invoice}</span>
               </div>
               <div className="flex justify-end">
-                <button className="flex items-center gap-1 text-[#2980B9] hover:text-[#2980B9]/80 cursor-pointer text-sm">
+                <button className="flex items-center gap-1 text-[var(--color-brand-primary)] hover:text-[var(--color-brand-primary)]/80 cursor-pointer text-sm">
                   <DownloadIcon />
                   <span>Download</span>
                 </button>
@@ -807,7 +807,7 @@ export default function SettingsContent({ activeTab: initialActiveTab }: Setting
                       {item.invoice}
                     </td>
                     <td className="px-3 lg:px-6 py-4 whitespace-nowrap text-sm">
-                      <button className="flex items-center gap-1 text-[#2980B9] hover:text-[#2980B9]/80 cursor-pointer">
+                      <button className="flex items-center gap-1 text-[var(--color-brand-primary)] hover:text-[var(--color-brand-primary)]/80 cursor-pointer">
                         <DownloadIcon />
                         <span className="hidden lg:inline">Download</span>
                       </button>
@@ -852,7 +852,7 @@ export default function SettingsContent({ activeTab: initialActiveTab }: Setting
               }}
               className={`py-3 sm:py-4 px-2 sm:px-1 border-b-2 font-medium text-xs sm:text-sm whitespace-nowrap transition-colors duration-200 cursor-pointer ${
                 activeTab === tab.id
-                  ? 'border-[#2980B9] text-[#2980B9] font-semibold'
+                  ? 'border-[var(--color-brand-primary)] text-[var(--color-brand-primary)] font-semibold'
                   : 'border-transparent text-tertiary hover:text-secondary hover:border-gray-300'
               }`}
             >

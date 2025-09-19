@@ -37,6 +37,23 @@ export const SignupBusiness = ({ data, onDataUpdate, onNext, onPrevious }) => {
     }
   };
 
+  // Function to handle phone input changes with real-time validation
+  const handlePhoneChange = (value) => {
+    onDataUpdate({ phone: value });
+    
+    // Clear phone error if user is typing and field becomes valid
+    if (errors.phone) {
+      const phoneError = validatePhone(value, data.country);
+      if (!phoneError) {
+        setErrors(prev => {
+          const newErrors = { ...prev };
+          delete newErrors.phone;
+          return newErrors;
+        });
+      }
+    }
+  };
+
   // Initialize phone code based on selected country
   useEffect(() => {
     if (data.country) {
@@ -46,6 +63,38 @@ export const SignupBusiness = ({ data, onDataUpdate, onNext, onPrevious }) => {
       }
     }
   }, [data.country]);
+
+  // Phone validation function
+  const validatePhone = (phoneNumber, countryCode) => {
+    if (!phoneNumber.trim()) {
+      return "Phone number is required";
+    }
+
+    // Remove all non-digit characters for validation
+    const cleanPhone = phoneNumber.replace(/\D/g, '');
+    
+    // Basic length validation (most phone numbers are between 7-15 digits)
+    if (cleanPhone.length < 7) {
+      return "Phone number is too short";
+    }
+    
+    if (cleanPhone.length > 15) {
+      return "Phone number is too long";
+    }
+
+    // Check for valid characters (only digits, spaces, hyphens, parentheses, plus)
+    const phoneRegex = /^[\d\s\-\(\)\+]+$/;
+    if (!phoneRegex.test(phoneNumber)) {
+      return "Phone number contains invalid characters";
+    }
+
+    // Check for minimum digit count (at least 7 digits)
+    if (cleanPhone.length < 7) {
+      return "Phone number must contain at least 7 digits";
+    }
+
+    return null; // Valid phone number
+  };
 
   const validateForm = () => {
     const newErrors = {};
@@ -68,6 +117,12 @@ export const SignupBusiness = ({ data, onDataUpdate, onNext, onPrevious }) => {
 
     if (!data.country.trim()) {
       newErrors.country = "Country is required";
+    }
+
+    // Validate phone number
+    const phoneError = validatePhone(data.phone, data.country);
+    if (phoneError) {
+      newErrors.phone = phoneError;
     }
 
     setErrors(newErrors);
@@ -155,8 +210,10 @@ export const SignupBusiness = ({ data, onDataUpdate, onNext, onPrevious }) => {
           </Select>
           
         <div className="space-y-2">
-          <label className="text-sm font-medium text-gray-700">Phone</label>
-          <div className="relative flex w-full items-center rounded-lg bg-primary shadow-xs ring-1 ring-primary ring-inset">
+          <label className="text-sm font-medium text-gray-700">Phone*</label>
+          <div className={`relative flex w-full items-center rounded-lg bg-primary shadow-xs ring-1 ring-inset ${
+            errors.phone ? 'ring-red-500' : 'ring-primary'
+          }`}>
             <div className="min-w-28">
               <Select
                 placeholder={`${selectedPhoneCode.flag} ${selectedPhoneCode.label} ${selectedPhoneCode.supportingText}`}
@@ -184,10 +241,15 @@ export const SignupBusiness = ({ data, onDataUpdate, onNext, onPrevious }) => {
               type="text"
               placeholder="Enter phone number"
               value={data.phone}
-              onChange={(e) => onDataUpdate({ phone: e.target.value })}
-              className="m-0 w-full bg-transparent text-md text-primary ring-0 outline-hidden px-3 py-2.5"
+              onChange={(e) => handlePhoneChange(e.target.value)}
+              className={`m-0 w-full bg-transparent text-md text-primary ring-0 outline-hidden px-3 py-2.5 ${
+                errors.phone ? 'text-red-500' : ''
+              }`}
             />
           </div>
+          {errors.phone && (
+            <p className="text-sm text-red-500 mt-1">{errors.phone}</p>
+          )}
         </div>
         </div>
 
@@ -208,7 +270,7 @@ export const SignupBusiness = ({ data, onDataUpdate, onNext, onPrevious }) => {
           size="md"
           className="md:w-[48%] w-full text-base leading-[1.5] font-semibold"
           onClick={handleNext}
-          style={{ backgroundColor: '#2980B9' }}
+          style={{ backgroundColor: 'var(--color-brand-primary)' }}
         >
           Continue
         </Button>

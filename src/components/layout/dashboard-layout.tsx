@@ -15,9 +15,9 @@ const StackedBoxesIcon = () => (
   </svg>
 )
 
-const PeopleIcon = () => (
+const CommunityIcon = () => (
   <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z" />
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
   </svg>
 )
 
@@ -60,7 +60,7 @@ const navigationItems = [
       { id: 'favorites', label: 'Favorites', badge: '0' }
     ]
   },
-  { id: 'community', label: 'Community', icon: PeopleIcon, hasDropdown: false },
+  { id: 'community', label: 'Community', icon: CommunityIcon, hasDropdown: false },
   { id: 'events', label: 'Events', icon: CalendarIcon, hasDropdown: false },
   { id: 'profile', label: 'Profile', icon: GlobeIcon, hasDropdown: false },
   { id: 'settings', label: 'Settings', icon: SettingsIcon, hasDropdown: false },
@@ -146,7 +146,7 @@ export default function DashboardLayout({
             <div key={item.id}>
               <button
                 className={`
-                  w-full flex items-center justify-between px-3 py-2 text-sm font-medium rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-[#2980B9] cursor-pointer
+                  w-full flex items-center justify-between px-3 py-2 text-sm font-medium rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-primary)] cursor-pointer
                   ${activeTab === item.id || (item.hasDropdown && activeTab.startsWith(item.id))
                     ? 'bg-blue-100 text-blue-700'
                     : 'text-gray-700 hover:bg-gray-200'
@@ -184,10 +184,10 @@ export default function DashboardLayout({
                     <button
                       key={dropdownItem.id}
                       className={`
-                        flex justify-between w-full text-left px-3 py-2 text-base rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2980B9] cursor-pointer
+                        flex justify-between w-full text-left px-3 py-2 text-base rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-primary)] cursor-pointer
                         ${activeTab === dropdownItem.id
                           ? 'bg-blue-50 text-blue-700'
-                          : 'text-[#344054] hover:bg-gray-200'
+                          : 'text-[var(--color-text-secondary)] hover:bg-gray-200'
                         }
                       `}
                       onClick={() => handleDropdownItemClick(dropdownItem.id)}
@@ -195,7 +195,7 @@ export default function DashboardLayout({
                     >
                       {dropdownItem.label}
                       {dropdownItem.badge && (
-                        <span className='text-[12px] py-[2px] px-2 text-[#344054] bg-[#F2F4F7] rounded-[16px]'>
+                        <span className='text-[12px] py-[2px] px-2 text-[var(--color-text-secondary)] bg-[var(--color-bg-light)] rounded-[16px]'>
                           {dropdownItem.badge}
                         </span>
                       )}
@@ -218,7 +218,7 @@ export default function DashboardLayout({
           <h1 className="text-lg sm:text-xl font-semibold text-gray-900">4M INSTITUTE</h1>
           <button
             onClick={() => setSidebarOpen(false)}
-            className="lg:hidden p-2 rounded-md text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-[#2980B9] cursor-pointer"
+            className="lg:hidden p-2 rounded-md text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-primary)] cursor-pointer"
             aria-label="Close sidebar"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -232,7 +232,7 @@ export default function DashboardLayout({
             <div key={item.id}>
               <button
                 className={`
-                  w-full flex items-center justify-between px-3 py-2 text-sm font-medium rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-[#2980B9] cursor-pointer
+                  w-full flex items-center justify-between px-3 py-2 text-sm font-medium rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-primary)] cursor-pointer
                   ${activeTab === item.id || (item.hasDropdown && activeTab.startsWith(item.id))
                     ? 'bg-blue-100 text-blue-700'
                     : 'text-gray-700 hover:bg-gray-200'
@@ -271,7 +271,7 @@ export default function DashboardLayout({
                     <button
                       key={dropdownItem.id}
                       className={`
-                        flex justify-between w-full text-left px-3 py-2 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2980B9] cursor-pointer
+                        flex justify-between w-full text-left px-3 py-2 text-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-primary)] cursor-pointer
                         ${activeTab === dropdownItem.id
                           ? 'bg-blue-50 text-blue-700'
                           : 'text-gray-600 hover:bg-gray-200'
@@ -285,7 +285,7 @@ export default function DashboardLayout({
                     >
                       {dropdownItem.label}
                       {dropdownItem.badge && (
-                        <span className='text-[12px] py-[2px] px-2 text-[#344054] bg-[#F2F4F7] rounded-[16px]'>
+                        <span className='text-[12px] py-[2px] px-2 text-[var(--color-text-secondary)] bg-[var(--color-bg-light)] rounded-[16px]'>
                           {dropdownItem.badge}
                         </span>
                       )}
@@ -306,7 +306,7 @@ export default function DashboardLayout({
             <div className="flex items-center space-x-2 sm:space-x-4 min-w-0 flex-1">
               <button
                 onClick={() => setSidebarOpen(true)}
-                className="lg:hidden p-1.5 sm:p-2 rounded-md text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-[#2980B9] cursor-pointer flex-shrink-0"
+                className="lg:hidden p-1.5 sm:p-2 rounded-md text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-primary)] cursor-pointer flex-shrink-0"
                 aria-label="Open sidebar"
               >
                 <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -315,7 +315,7 @@ export default function DashboardLayout({
               </button>
 
               <div className="block min-w-0 flex-1">
-                <h2 className="text-base sm:text-lg font-semibold text-[#101828] leading-[1.223] truncate">Welcome back, {userName}</h2>
+                <h2 className="text-base sm:text-lg font-semibold text-[var(--color-text-primary)] leading-[1.223] truncate">Welcome back, {userName}</h2>
                 <p className="text-xs sm:text-sm text-gray-600 max-sm:hidden leading-[1.7145] truncate">{subscriptionInfo}</p>
               </div>
             </div>
