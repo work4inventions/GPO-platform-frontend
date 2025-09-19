@@ -27,7 +27,7 @@ export const SignupSidebar = ({ currentStep, onStepChange, isMobile = false }) =
   const currentStepIndex = steps.findIndex(step => step.id === currentStep);
 
   return (
-    <div className={`${isMobile ? 'w-full h-auto' : 'w-full h-full'} bg-[#304258] text-white flex flex-col`}>
+    <div className={`${isMobile ? 'w-full h-auto' : 'w-full h-full'} bg-[var(--color-bg-sidebar-dark)] text-white flex flex-col`}>
       {/* Header */}
       <div className="p-6 lg:pt-12 lg:pb-20 lg:pl-12">
         <img src="./assets/signupPage/signUpLogo.png" alt="4M Institute" className="" />
@@ -64,9 +64,9 @@ export const SignupSidebar = ({ currentStep, onStepChange, isMobile = false }) =
                     }`}
                   >
                     {isCompleted ? (
-                      <Check className="w-5 h-5 text-[#304258]" />
+                      <Check className="w-5 h-5 text-[var(--color-bg-sidebar-dark)]" />
                     ) : isActive ? (
-                      <div className="w-2 h-2 bg-[#2980B9] rounded-full" />
+                      <div className="w-2 h-2 bg-[var(--color-brand-primary)] rounded-full" />
                     ) : (
                       <div className="w-2 h-2 bg-white/30 rounded-full" />
                     )}
@@ -102,13 +102,13 @@ export const SignupSidebar = ({ currentStep, onStepChange, isMobile = false }) =
       {!isMobile && (
         <div className="border-white/10">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between px-8 pb-8">
-            <p className="text-sm text-[#D3D8E0] max-2xl:text-xs">© 4M Institute 2077</p>
+            <p className="text-sm text-[var(--color-text-on-dark)] max-2xl:text-xs">© 4M Institute 2077</p>
             <div className="flex items-center mt-2 sm:mt-0">
               <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
                 <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
                 <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
               </svg>
-              <p className="text-sm text-[#D3D8E0]  max-2xl:text-xs">help@4minstitute.com</p>
+              <p className="text-sm text-[var(--color-text-on-dark)]  max-2xl:text-xs">help@4minstitute.com</p>
             </div>
           </div>
         </div>

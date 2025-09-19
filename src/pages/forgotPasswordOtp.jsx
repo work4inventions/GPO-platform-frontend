@@ -89,12 +89,12 @@ function ForgotPasswordOtp() {
             <div className='main-welcome-back flex items-center w-full justify-center max-[1024px]:flex-col max-[1024px]:pt-[30px]'>
                 <div className="justify-center relative px-3 w-full max-w-[360px]">
                     <div className="mb-8">
-                        <h2 className="text-3xl text-[#101828] font-semibold">Enter OTP</h2>
-                        <p className="mt-3 text-base text-[#475467]">We have sent an OTP to your email.</p>
+                        <h2 className="text-3xl text-[var(--color-text-primary)] font-semibold">Enter OTP</h2>
+                        <p className="mt-3 text-base text-[var(--color-text-tertiary)]">We have sent an OTP to your email.</p>
                     </div>
                     <form onSubmit={handleSubmit}>
                         <div className='mb-5'>
-                            <p className='text-sm font-medium text-[#344054] mb-1.5 text-center'>One-Time Password</p>
+                            <p className='text-sm font-medium text-[var(--color-text-secondary)] mb-1.5 text-center'>One-Time Password</p>
                             <OTPInput
                                 length={6}
                                 value={otp}
@@ -108,7 +108,7 @@ function ForgotPasswordOtp() {
                         <Button
                             type="submit"
                             disabled={isLoading || otp.length !== 6}
-                            className="w-full bg-[#2980B9] text-white py-2.5 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                            className="w-full bg-[var(--color-brand-primary)] text-white py-2.5 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed"
                         >
                             {isLoading ? 'Verifying...' : 'Verify OTP'}
                         </Button>

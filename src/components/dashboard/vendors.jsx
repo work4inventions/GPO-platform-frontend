@@ -7,7 +7,7 @@ import { Select } from '@/components/base/select/select'
 // Icons
 const ArrowRightIcon = () => (
   <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M4.1665 10.0003H15.8332M15.8332 10.0003L9.99984 4.16699M15.8332 10.0003L9.99984 15.8337" stroke="#2980B9" strokeWidth="1.66667" strokeLinecap="round" strokeLinejoin="round"/>
+    <path d="M4.1665 10.0003H15.8332M15.8332 10.0003L9.99984 4.16699M15.8332 10.0003L9.99984 15.8337" stroke="var(--color-brand-primary)" strokeWidth="1.66667" strokeLinecap="round" strokeLinejoin="round"/>
   </svg>
 )
 
@@ -16,17 +16,17 @@ const VendorIcon = ({ type, className = "w-12 h-12" }) => {
   return (
     <div className={`${className} flex items-center justify-center`}>
       <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M41.4971 19.8247L22.8113 1.75185L21 0L6.93403 13.6045L0.50289 19.8247C-0.16763 20.474 -0.16763 21.526 0.50289 22.1753L13.3537 34.6045L21 42L35.066 28.3955L35.2838 28.1848L41.4971 22.1753C42.1676 21.526 42.1676 20.474 41.4971 19.8247ZM21 27.2091L14.5803 21L21 14.7909L27.4197 21L21 27.2091Z" fill="#2980B9"/>
+        <path d="M41.4971 19.8247L22.8113 1.75185L21 0L6.93403 13.6045L0.50289 19.8247C-0.16763 20.474 -0.16763 21.526 0.50289 22.1753L13.3537 34.6045L21 42L35.066 28.3955L35.2838 28.1848L41.4971 22.1753C42.1676 21.526 42.1676 20.474 41.4971 19.8247ZM21 27.2091L14.5803 21L21 14.7909L27.4197 21L21 27.2091Z" fill="var(--color-brand-primary)"/>
         <path fillRule="evenodd" clipRule="evenodd" d="M20.9999 14.7908C16.7968 10.7251 16.7763 4.13991 20.954 0.0498047L6.90527 13.6322L14.5516 21.0276L20.9999 14.7908Z" fill="url(#paint0_linear_599_9368)"/>
         <path fillRule="evenodd" clipRule="evenodd" d="M27.4369 20.9834L21 27.2091C23.0287 29.1701 24.1685 31.8305 24.1685 34.6046C24.1685 37.3787 23.0287 40.039 21 42L35.0832 28.3789L27.4369 20.9834Z" fill="url(#paint1_linear_599_9368)"/>
         <defs>
           <linearGradient id="paint0_linear_599_9368" x1="19.8535" y1="8.50968" x2="9.14468" y2="13.1853" gradientUnits="userSpaceOnUse">
-            <stop offset="0.18" stopColor="#0052CC"/>
-            <stop offset="1" stopColor="#2684FF"/>
+            <stop offset="0.18" stopColor="var(--color-gradient-start)"/>
+            <stop offset="1" stopColor="var(--color-gradient-end)"/>
           </linearGradient>
           <linearGradient id="paint1_linear_599_9368" x1="22.2266" y1="33.4182" x2="32.9162" y2="28.7757" gradientUnits="userSpaceOnUse">
-            <stop offset="0.18" stopColor="#0052CC"/>
-            <stop offset="1" stopColor="#2684FF"/>
+            <stop offset="0.18" stopColor="var(--color-gradient-start)"/>
+            <stop offset="1" stopColor="var(--color-gradient-end)"/>
           </linearGradient>
         </defs>
       </svg>
@@ -264,13 +264,13 @@ export default function Vendors() {
                   {/* Vendor Info */}
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900">{vendor.name}</h3>
-                    <p className="text-sm text-[#475467] font-normal">{vendor.productType}</p>
+                    <p className="text-sm text-[var(--color-text-tertiary)] font-normal">{vendor.productType}</p>
                   </div>
                 </div>
                 
                 {/* Discount Badge */}
                 {vendor.hasDiscount && (
-                  <div className="text-xs font-semibold px-2 py-1 rounded" style={{ backgroundColor: '#FDECEC', color: '#7A0202' }}>
+                  <div className="text-xs font-semibold px-2 py-1 rounded" style={{ backgroundColor: 'var(--color-bg-error-light)', color: 'var(--color-text-error)' }}>
                     {vendor.discountPercent}% OFF
                   </div>
                 )}
@@ -285,8 +285,8 @@ export default function Vendors() {
               <div className="mt-4 pt-4 border-t border-gray-100">
                 <button
                   onClick={() => handleViewDetails(vendor.id)}
-                  className="flex items-center text-sm font-semibold transition-colors duration-200"
-                  style={{ color: '#2980B9' }}
+                  className="flex items-center text-sm font-semibold transition-colors duration-200 cursor-pointer"
+                  style={{ color: 'var(--color-brand-primary)' }}
                 >
                   View Details
                   <div className="ml-2">
@@ -318,7 +318,7 @@ export default function Vendors() {
           <button
             onClick={() => handlePageChange(currentPage - 1)}
             disabled={currentPage === 1}
-            className="px-3 py-2 text-sm font-medium text-gray-500 hover:text-gray-700 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="px-3 py-2 text-sm font-medium text-gray-500 hover:text-gray-700 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
           >
             ← Previous
           </button>
@@ -341,7 +341,7 @@ export default function Vendors() {
                 <button
                   key={pageNum}
                   onClick={() => handlePageChange(pageNum)}
-                  className={`px-3 py-2 text-sm font-medium rounded-lg transition-colors duration-200 ${
+                  className={`px-3 py-2 text-sm font-medium rounded-lg transition-colors duration-200 cursor-pointer ${
                     currentPage === pageNum
                       ? 'bg-blue-600 text-white'
                       : 'text-gray-700 hover:bg-gray-100'
@@ -357,7 +357,7 @@ export default function Vendors() {
                 <span className="px-2 text-gray-500">...</span>
                 <button
                   onClick={() => handlePageChange(totalPages)}
-                  className="px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 rounded-lg transition-colors duration-200"
+                  className="px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 rounded-lg transition-colors duration-200 cursor-pointer"
                 >
                   {totalPages}
                 </button>
@@ -368,7 +368,7 @@ export default function Vendors() {
           <button
             onClick={() => handlePageChange(currentPage + 1)}
             disabled={currentPage === totalPages}
-            className="px-3 py-2 text-sm font-medium text-gray-500 hover:text-gray-700 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="px-3 py-2 text-sm font-medium text-gray-500 hover:text-gray-700 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
           >
             Next →
           </button>

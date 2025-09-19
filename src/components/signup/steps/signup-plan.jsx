@@ -72,7 +72,7 @@ export const SignupPlan = ({ data, onDataUpdate, onNext, onPrevious }) => {
           onChange={(isSelected) => onDataUpdate({ isAnnual: isSelected })}
         />
         </div>
-        <span className={`text-base font-medium text-[#2980B9] `}>
+        <span className={`text-base font-medium text-[var(--color-brand-primary)] `}>
           Annual pricing
         </span>
         {data.isAnnual && (
@@ -91,14 +91,14 @@ export const SignupPlan = ({ data, onDataUpdate, onNext, onPrevious }) => {
               key={plan.id}
               className={`relative otline-offset-1 outline-1 outline-gray-200 shadow-lg rounded-2xl cursor-pointer transition-all duration-200 p-8 flex flex-col h-full ${
                 isSelected
-                  ? 'border-[#2980B9] bg-blue-50'
+                  ? 'border-[var(--color-brand-primary)] bg-blue-50'
                   : 'border-gray-200 hover:border-gray-300'
               }`}
               onClick={() => handlePlanSelect(plan.id)}
             >
               {/* Selection Indicator */}
               {isSelected && (
-                <div className="absolute top-4 right-4 w-6 h-6 bg-[#2980B9] rounded-full flex items-center justify-center">
+                <div className="absolute top-4 right-4 w-6 h-6 bg-[var(--color-brand-primary)] rounded-full flex items-center justify-center">
                   <Check className="w-4 h-4 text-white" />
                 </div>
               )}
@@ -127,10 +127,10 @@ export const SignupPlan = ({ data, onDataUpdate, onNext, onPrevious }) => {
               {/* Button */}
               <Button
                 size="lg"
-                className="w-full py-3 bg-[#2980B9] text-white mt-6"
+                className="w-full py-3 bg-[var(--color-brand-primary)] text-white mt-6"
                 color={isSelected ? "primary" : "secondary"}
                 onClick={() => handlePlanSelect(plan.id)}
-                style={isSelected ? { backgroundColor: '#2980B9' } : undefined}
+                style={isSelected ? { backgroundColor: 'var(--color-brand-primary)' } : undefined}
               >
                 Subscribe to {plan.name}
               </Button>

@@ -74,15 +74,15 @@ function ForgotPassword() {
                     <div className="justify-center relative ps-3 max-[1024px]:px-3 max-[768px]:w-full">
                         <div className="mx-auto w-[360px] max-[768px]:w-full">
                             <div className="mb-8 max-[767px]:mb-4">
-                                <h2 className="text-3xl text-[#101828] leading-[1.267] font-semibold max-[767px]:leading-[1.3]">Forgot Password</h2>
-                                <p className="mt-3 text-base text-[#475467] font-normal leading-[1.5] max-[767px]:m-0">
+                                <h2 className="text-3xl text-[var(--color-text-primary)] leading-[1.267] font-semibold max-[767px]:leading-[1.3]">Forgot Password</h2>
+                                <p className="mt-3 text-base text-[var(--color-text-tertiary)] font-normal leading-[1.5] max-[767px]:m-0">
                                     Enter your email address and we'll send you a link to reset your password.
                                 </p>
                             </div>
 
                             <form onSubmit={handleSubmit}>
                                 <div className='mb-5'>
-                                    <p className='leading-[1.429] text-sm font-medium text-[#344054] mb-1.5'>Email</p>
+                                    <p className='leading-[1.429] text-sm font-medium text-[var(--color-text-secondary)] mb-1.5'>Email</p>
                                     <Input
                                         type="email"
                                         placeholder="Enter your email"
@@ -105,20 +105,20 @@ function ForgotPassword() {
                                     <Button
                                         type="submit"
                                         disabled={isLoading}
-                                        className="w-full bg-[#2980B9] text-base leading-[1.5] text-white font-medium py-2.5 px-4 rounded-lg transition-all duration-50 ease-in-out transform hover:bg-[#1f5f8b] hover:scale-[1.02] hover:shadow-lg active:scale-[0.98] active:bg-[#1a4d73] focus:outline-none focus:ring-2 focus:ring-[#2980B9] focus:ring-opacity-50 disabled:opacity-50 disabled:cursor-not-allowed"
+                                        className="w-full bg-[var(--color-brand-primary)] text-base leading-[1.5] text-white font-medium py-2.5 px-4 rounded-lg transition-all duration-50 ease-in-out transform hover:bg-[var(--color-brand-primary-hover)] hover:scale-[1.02] hover:shadow-lg active:scale-[0.98] active:bg-[var(--color-brand-primary-active)] focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-primary)] focus:ring-opacity-50 disabled:opacity-50 disabled:cursor-not-allowed"
                                     >
                                         {isLoading ? 'Sending...' : 'Send otp'}
                                     </Button>
                                 </div>
 
                                 <div className="text-center">
-                                    <p className="text-sm text-[#475467] font-normal leading-[1.429]">
+                                    <p className="text-sm text-[var(--color-text-tertiary)] font-normal leading-[1.429]">
                                         Remember your password?{' '}
                                         <Button
                                             color="link-color"
                                             size="sm"
                                             onClick={() => navigate('/')}
-                                            className="text-sm text-[#2980B9]"
+                                            className="text-sm text-[var(--color-brand-primary)]"
                                         >
                                             Sign in
                                         </Button>

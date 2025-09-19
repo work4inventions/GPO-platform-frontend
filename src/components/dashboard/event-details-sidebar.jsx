@@ -87,7 +87,7 @@ const EventDetailsSidebar = ({ event, isOpen, onClose }) => {
                 <h3 className="text-2xl font-bold text-gray-900">
                   {event.title}
                 </h3>
-                <div className="flex items-center gap-2 text-sm text-[#2980B9]">
+                <div className="flex items-center gap-2 text-sm text-[var(--color-brand-primary)]">
                   <Calendar className="w-4 h-4" />
                   <span>{event.date} – {event.time}</span>
                 </div>

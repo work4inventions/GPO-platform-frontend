@@ -59,17 +59,17 @@ const JiraIcon = ({ className = "w-12 h-12" }) => {
   return (
     <div className={`${className} flex items-center justify-center`}>
       <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M41.4971 19.8247L22.8113 1.75185L21 0L6.93403 13.6045L0.50289 19.8247C-0.16763 20.474 -0.16763 21.526 0.50289 22.1753L13.3537 34.6045L21 42L35.066 28.3955L35.2838 28.1848L41.4971 22.1753C42.1676 21.526 42.1676 20.474 41.4971 19.8247ZM21 27.2091L14.5803 21L21 14.7909L27.4197 21L21 27.2091Z" fill="#2980B9"/>
+        <path d="M41.4971 19.8247L22.8113 1.75185L21 0L6.93403 13.6045L0.50289 19.8247C-0.16763 20.474 -0.16763 21.526 0.50289 22.1753L13.3537 34.6045L21 42L35.066 28.3955L35.2838 28.1848L41.4971 22.1753C42.1676 21.526 42.1676 20.474 41.4971 19.8247ZM21 27.2091L14.5803 21L21 14.7909L27.4197 21L21 27.2091Z" fill="var(--color-brand-primary)"/>
         <path fillRule="evenodd" clipRule="evenodd" d="M20.9999 14.7908C16.7968 10.7251 16.7763 4.13991 20.954 0.0498047L6.90527 13.6322L14.5516 21.0276L20.9999 14.7908Z" fill="url(#paint0_linear_599_9368)"/>
         <path fillRule="evenodd" clipRule="evenodd" d="M27.4369 20.9834L21 27.2091C23.0287 29.1701 24.1685 31.8305 24.1685 34.6046C24.1685 37.3787 23.0287 40.039 21 42L35.0832 28.3789L27.4369 20.9834Z" fill="url(#paint1_linear_599_9368)"/>
         <defs>
           <linearGradient id="paint0_linear_599_9368" x1="19.8535" y1="8.50968" x2="9.14468" y2="13.1853" gradientUnits="userSpaceOnUse">
-            <stop offset="0.18" stopColor="#0052CC"/>
-            <stop offset="1" stopColor="#2684FF"/>
+            <stop offset="0.18" stopColor="var(--color-gradient-start)"/>
+            <stop offset="1" stopColor="var(--color-gradient-end)"/>
           </linearGradient>
           <linearGradient id="paint1_linear_599_9368" x1="22.2266" y1="33.4182" x2="32.9162" y2="28.7757" gradientUnits="userSpaceOnUse">
-            <stop offset="0.18" stopColor="#0052CC"/>
-            <stop offset="1" stopColor="#2684FF"/>
+            <stop offset="0.18" stopColor="var(--color-gradient-start)"/>
+            <stop offset="1" stopColor="var(--color-gradient-end)"/>
           </linearGradient>
         </defs>
       </svg>
@@ -137,7 +137,7 @@ function VendorDetailsPage() {
           <div className="flex items-center space-x-4">
             <button
               onClick={handleBackToVendors}
-              className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 transition-colors"
+              className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 transition-colors cursor-pointer"
             >
               <ArrowLeftIcon />
               <span className="text-sm font-medium">Back to Vendors</span>
@@ -163,7 +163,7 @@ function VendorDetailsPage() {
                   <h1 className="text-2xl lg:text-3xl font-bold text-gray-900">{vendor.name}</h1>
                   <button
                     onClick={handleAddToFavorites}
-                    className={`flex items-center space-x-2 px-3 py-1 rounded-lg border transition-colors ${
+                    className={`flex items-center space-x-2 px-3 py-1 rounded-lg border transition-colors cursor-pointer ${
                       isFavorited
                         ? 'bg-red-50 border-red-200 text-red-700'
                         : 'bg-blue-50 border-blue-200 text-blue-700 hover:bg-blue-100'
@@ -183,14 +183,14 @@ function VendorDetailsPage() {
             
             {/* Right Section - Action Buttons */}
             <div className="flex flex-col sm:flex-row gap-3 ml-6">
-              <button className="flex items-center space-x-2 px-4 py-2 border border-blue-300 text-blue-700 bg-white rounded-lg hover:bg-blue-50 transition-colors">
+              <button className="flex items-center space-x-2 px-4 py-2 border border-blue-300 text-blue-700 bg-white rounded-lg hover:bg-blue-50 transition-colors cursor-pointer">
                 <span className="text-sm font-medium">Book Now</span>
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                 </svg>
               </button>
               
-              <button className="flex items-center space-x-2 px-4 py-2 border border-gray-300 text-gray-700 bg-white rounded-lg hover:bg-gray-50 transition-colors">
+              <button className="flex items-center space-x-2 px-4 py-2 border border-gray-300 text-gray-700 bg-white rounded-lg hover:bg-gray-50 transition-colors cursor-pointer">
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                 </svg>
@@ -216,7 +216,7 @@ function VendorDetailsPage() {
           <div className="lg:sticky lg:top-24 space-y-6">
             {/* Product/Services Section */}
             <div className="bg-white rounded-lg border border-gray-200 p-6">
-              <h2 className="text-lg font-semibold mb-4" style={{ color: '#2980B9' }}>Product/Services</h2>
+              <h2 className="text-lg font-semibold mb-4" style={{ color: 'var(--color-brand-primary)' }}>Product/Services</h2>
               <div className="space-y-4">
                 {vendor.specialties.slice(0, 3).map((product, index) => (
                   <div key={index} className="flex items-center space-x-3">
@@ -236,14 +236,14 @@ function VendorDetailsPage() {
 
             {/* Contact Vendor Section */}
             <div className="bg-white rounded-lg border border-gray-200 p-6">
-              <h2 className="text-lg font-semibold mb-4" style={{ color: '#2980B9' }}>Contact Vendor</h2>
+              <h2 className="text-lg font-semibold mb-4" style={{ color: 'var(--color-brand-primary)' }}>Contact Vendor</h2>
               <div className="space-y-3">
-                <button className="w-full flex items-center space-x-3 px-4 py-3 text-white rounded-lg transition-colors" style={{ backgroundColor: '#2980B9' }} onMouseEnter={(e) => e.target.style.backgroundColor = '#1e6bb8'} onMouseLeave={(e) => e.target.style.backgroundColor = '#2980B9'}>
+                <button className="w-full flex items-center space-x-3 px-4 py-3 text-white rounded-lg transition-colors cursor-pointer" style={{ backgroundColor: 'var(--color-brand-primary)' }} onMouseEnter={(e) => e.target.style.backgroundColor = 'var(--color-brand-primary-hover-variant)'} onMouseLeave={(e) => e.target.style.backgroundColor = 'var(--color-brand-primary)'}>
                   <EmailIcon />
                   <span className="text-sm font-medium">Send Email</span>
                 </button>
                 
-                <button className="w-full flex items-center space-x-3 px-4 py-3 border border-gray-300 text-gray-700 bg-white rounded-lg hover:bg-gray-50 transition-colors">
+                <button className="w-full flex items-center space-x-3 px-4 py-3 border border-gray-300 text-gray-700 bg-white rounded-lg hover:bg-gray-50 transition-colors cursor-pointer">
                   <PhoneIcon />
                   <span className="text-sm font-medium">Phone call</span>
                 </button>
@@ -253,19 +253,19 @@ function VendorDetailsPage() {
             {/* Social Media Links */}
             <div className="bg-white rounded-lg border border-gray-200 p-6">
               <div className="flex items-center space-x-3">
-                <button className="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center hover:bg-gray-200 transition-colors">
+                <button className="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center hover:bg-gray-200 transition-colors cursor-pointer">
                   <svg className="w-5 h-5 text-gray-600" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
                   </svg>
                 </button>
                 
-                <button className="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center hover:bg-gray-200 transition-colors">
+                <button className="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center hover:bg-gray-200 transition-colors cursor-pointer">
                   <svg className="w-5 h-5 text-gray-600" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
                   </svg>
                 </button>
                 
-                <button className="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center hover:bg-gray-200 transition-colors">
+                <button className="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center hover:bg-gray-200 transition-colors cursor-pointer">
                   <svg className="w-5 h-5 text-gray-600" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
                   </svg>

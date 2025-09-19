@@ -15,7 +15,6 @@ import Categories from "./pages/categories.jsx";
 import Favorites from "./pages/favorites.jsx";
 import Community from "./pages/community.jsx";
 import Events from "./pages/events.jsx";
-import Profile from "./pages/profile.jsx";
 import Settings from "./pages/settings.jsx";
 import VendorDetails from "./pages/vendorDetails.jsx";
 import ForgotPassword from "./pages/forgotPassword.jsx";
@@ -37,7 +36,6 @@ createRoot(document.getElementById("root")).render(
                                 <Route path="/favorites" element={<Favorites />} />
                                 <Route path="/community" element={<Community />} />
                                 <Route path="/events" element={<Events />} />
-                                <Route path="/profile" element={<Profile />} />
                                 <Route path="/settings" element={<Settings />} />
                                 <Route path="/vendor-details/:id" element={<VendorDetails />} />
                                 <Route path="/forgot-password" element={<ForgotPassword />} />
